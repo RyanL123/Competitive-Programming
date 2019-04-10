@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/CCC.dir/main.cpp.obj"
+  "CMakeFiles/CCC.dir/2015/S1.cpp.obj"
   "CCC.pdb"
   "CCC.exe"
   "CCC.exe.manifest"

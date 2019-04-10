@@ -122,32 +122,32 @@ CCC/fast:
 	$(MAKE) -f CMakeFiles\CCC.dir\build.make CMakeFiles/CCC.dir/build
 .PHONY : CCC/fast
 
-main.obj: main.cpp.obj
+2015/S1.obj: 2015/S1.cpp.obj
 
-.PHONY : main.obj
+.PHONY : 2015/S1.obj
 
 # target to build an object file
-main.cpp.obj:
-	$(MAKE) -f CMakeFiles\CCC.dir\build.make CMakeFiles/CCC.dir/main.cpp.obj
-.PHONY : main.cpp.obj
+2015/S1.cpp.obj:
+	$(MAKE) -f CMakeFiles\CCC.dir\build.make CMakeFiles/CCC.dir/2015/S1.cpp.obj
+.PHONY : 2015/S1.cpp.obj
 
-main.i: main.cpp.i
+2015/S1.i: 2015/S1.cpp.i
 
-.PHONY : main.i
+.PHONY : 2015/S1.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles\CCC.dir\build.make CMakeFiles/CCC.dir/main.cpp.i
-.PHONY : main.cpp.i
+2015/S1.cpp.i:
+	$(MAKE) -f CMakeFiles\CCC.dir\build.make CMakeFiles/CCC.dir/2015/S1.cpp.i
+.PHONY : 2015/S1.cpp.i
 
-main.s: main.cpp.s
+2015/S1.s: 2015/S1.cpp.s
 
-.PHONY : main.s
+.PHONY : 2015/S1.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles\CCC.dir\build.make CMakeFiles/CCC.dir/main.cpp.s
-.PHONY : main.cpp.s
+2015/S1.cpp.s:
+	$(MAKE) -f CMakeFiles\CCC.dir\build.make CMakeFiles/CCC.dir/2015/S1.cpp.s
+.PHONY : 2015/S1.cpp.s
 
 # Help Target
 help:
@@ -158,9 +158,9 @@ help:
 	@echo ... edit_cache
 	@echo ... CCC
 	@echo ... rebuild_cache
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... 2015/S1.obj
+	@echo ... 2015/S1.i
+	@echo ... 2015/S1.s
 .PHONY : help
 
 

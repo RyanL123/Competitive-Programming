@@ -56,27 +56,27 @@ include CMakeFiles/CCC.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/CCC.dir/flags.make
 
-CMakeFiles/CCC.dir/main.cpp.obj: CMakeFiles/CCC.dir/flags.make
-CMakeFiles/CCC.dir/main.cpp.obj: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ryanl\CLionProjects\CCCPractice\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CCC.dir/main.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\CCC.dir\main.cpp.obj -c C:\Users\ryanl\CLionProjects\CCCPractice\main.cpp
+CMakeFiles/CCC.dir/2015/S1.cpp.obj: CMakeFiles/CCC.dir/flags.make
+CMakeFiles/CCC.dir/2015/S1.cpp.obj: ../2015/S1.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ryanl\CLionProjects\CCCPractice\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CCC.dir/2015/S1.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\CCC.dir\2015\S1.cpp.obj -c C:\Users\ryanl\CLionProjects\CCCPractice\2015\S1.cpp
 
-CMakeFiles/CCC.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CCC.dir/main.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ryanl\CLionProjects\CCCPractice\main.cpp > CMakeFiles\CCC.dir\main.cpp.i
+CMakeFiles/CCC.dir/2015/S1.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CCC.dir/2015/S1.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ryanl\CLionProjects\CCCPractice\2015\S1.cpp > CMakeFiles\CCC.dir\2015\S1.cpp.i
 
-CMakeFiles/CCC.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CCC.dir/main.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ryanl\CLionProjects\CCCPractice\main.cpp -o CMakeFiles\CCC.dir\main.cpp.s
+CMakeFiles/CCC.dir/2015/S1.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CCC.dir/2015/S1.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ryanl\CLionProjects\CCCPractice\2015\S1.cpp -o CMakeFiles\CCC.dir\2015\S1.cpp.s
 
 # Object files for target CCC
 CCC_OBJECTS = \
-"CMakeFiles/CCC.dir/main.cpp.obj"
+"CMakeFiles/CCC.dir/2015/S1.cpp.obj"
 
 # External object files for target CCC
 CCC_EXTERNAL_OBJECTS =
 
-CCC.exe: CMakeFiles/CCC.dir/main.cpp.obj
+CCC.exe: CMakeFiles/CCC.dir/2015/S1.cpp.obj
 CCC.exe: CMakeFiles/CCC.dir/build.make
 CCC.exe: CMakeFiles/CCC.dir/linklibs.rsp
 CCC.exe: CMakeFiles/CCC.dir/objects1.rsp

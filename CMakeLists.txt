@@ -3,4 +3,4 @@ project(CCC)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(CCC main.cpp)
+add_executable(CCC 2015/S1.cpp)

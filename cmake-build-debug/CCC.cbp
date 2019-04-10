@@ -80,7 +80,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/ryanl/CLionProjects/CCCPractice/main.cpp">
+		<Unit filename="C:/Users/ryanl/CLionProjects/CCCPractice/2015/S1.cpp">
 			<Option target="CCC"/>
 		</Unit>
 		<Unit filename="C:/Users/ryanl/CLionProjects/CCCPractice/CMakeLists.txt">
