@@ -17,12 +17,19 @@ int main(){
         cin >> a;
         for (int j = 0; j < friends.size(); j++) {
             if ((j+1) % a == 0) {
-                friends.erase(friends.begin()+j);
+                friends[j] = 0;
             }
+        }
+        for (int j = 0; j < friends.size(); j++){
+          if (friends[j] == 0){
+            friends.erase(friends.begin()+j);
+          }
         }
     }
 
     for (int i = 0; i < friends.size(); i++){
+      if (friends[i] != 0){
         cout << friends[i] << endl;
+      }
     }
 }
