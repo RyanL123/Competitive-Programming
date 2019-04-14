@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(){
-    int problem, n, input;
+    int problem, n, input, total = 0;
 
     cin >> problem >> n;
 
@@ -25,8 +25,27 @@ int main(){
 
     sort(peg, peg+n);
 
-    for (int i = 0; i < n; i++){
-        cout << dmoj[n];
+    if (problem == 1){
+        for (int i = 0; i < n; i++){
+            if (dmoj[i] > peg[i]){
+                total += dmoj[i];
+            }
+            else{
+                total += peg[i];
+            }
+        }
+    }
+    else {
+        reverse(dmoj, dmoj+n);
+        for (int i = 0; i < n; i++){
+            if (dmoj[i] > peg[i]){
+                total += dmoj[i];
+            }
+            else{
+                total += peg[i];
+            }
+        }
     }
 
+    cout << total << endl;
 }
