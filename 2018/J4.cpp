@@ -6,14 +6,15 @@ int main(){
     int n, a;
 
     cin >> n;
-    int flowers[110][110] {0};
+
+    int flowers[150][150] = {0};
 
     //takes grid input
     for (int i = 0; i < n; i++){
-            for (int j = 0; j < n; j++){
-                cin >> a;
-                flowers[i][j] = a;
-            }
+        for (int j = 0; j < n; j++){
+            cin >> a;
+            flowers[i][j] = a;
+        }
     }
 
     //grid is not rotated
@@ -36,7 +37,7 @@ int main(){
     }
     //grid is rotated 180 degrees
     else if (flowers[n-1][n-1] < flowers[n-2][n-1] && flowers[n-1][n-1] < flowers[n-1][n-2]){
-        for (int i = n-1; n >= 0; i--){
+        for (int i = n-1; i >= 0; i--){
             for (int j = n-1; j >= 0; j--){
                 cout << flowers[i][j] << " ";
             }
