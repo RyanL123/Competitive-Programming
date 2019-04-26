@@ -32,21 +32,5 @@ int main() {
         break;
       }
     }
-
-    // bool doubleBreak = false;
-
-    // for (int i = 2; i < 2*input; i++){
-    //   if (doubleBreak){
-    //     break;
-    //   }
-    //   for (int j = 2; j < 2*input; j++){
-    //     //if both numbers are prime and their average is equal to input
-    //     if (isPrime(i) && isPrime(j) && (i+j) == 2*input){
-    //       printf("%i %i\n", i , j);
-    //       doubleBreak = true;
-    //       break;
-    //     }
-    //   }
-    // }
   }
 } 
