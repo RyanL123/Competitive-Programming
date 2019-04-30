@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cstdio>
 
 using namespace std;
 
@@ -30,7 +31,7 @@ int main(){
         }
 
         //gets difference between every term
-        vector<int>sequence {};
+        vector<int>sequence;
 
         for (int i = 0; i < n; i++){
             if (i != n-1){
