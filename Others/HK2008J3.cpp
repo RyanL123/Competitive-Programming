@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdio>
 #include <vector>
 
 using namespace std;
@@ -9,53 +10,48 @@ int main(){
     vector<string> names;
     vector<int> numbers;
 
-    cin >> n;
+    scanf("%i", &n);
 
-    int callCounter[n];
-
-    //initializes all values in callCounter to 0
-    for (int i = 0; i < n; i++){
-        callCounter[i] = 0;
-    }
-
-    //gets input
-    for (int i = 0; i < n; i++){
-        //gets the name of the contact
-        cin >> name;
+    //stores name and numbers in separate vectors with synced indices
+    for (int i = 0; i < n; i++) {
+        cin >> name >> number;
         names.push_back(name);
-
-        //gets the number of the contact
-        cin >> number;
         numbers.push_back(number);
-
     }
 
-    cin >> d;
+    scanf("%i", &d);
 
-    //counts the amount of time each number is called and stores it in the callCounter array
+    //initializes callCount array
+    int callCount[n];
+    for (int i = 0; i < n; i++){
+        callCount[i] = 0;
+    }
+
+    //gets call history
     for (int i = 0; i < d; i++){
-        cin >> number;
+        scanf("%i", &number);
         for (int j = 0; j < n; j++){
-            if (number == numbers[j]){
-                callCounter[j]++;
+            if (numbers[j] == number){
+                callCount[j]++;
             }
         }
     }
 
-    //finds the most called number and stores the index of that number
-    int largest = 0, largestIndex = 0;
+    //finds the most called phone number
+    int largest = -1, largestIndex = 0;
     for (int i = 0; i < n; i++){
-      if (callCounter[i] > largest){
-          largest = callCounter[i];
-          largestIndex = i;
-      }
-      else if(callCounter[i] == largest){
-          if (numbers[i] > numbers[largestIndex]){
-              largestIndex = i;
-          }
-      }
+        if (callCount[i] > largest){
+            largest = callCount[i];
+            largestIndex = i;
+        }
+        //tie breaker between numbers
+        else if (callCount[i] == largest){
+            if (numbers[i] < numbers[largestIndex]){
+                largest = callCount[i];
+                largestIndex = i;
+            }
+        }
     }
 
     cout << names[largestIndex] << endl;
 }
-
