@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cstdio>
 
 using namespace std;
 
@@ -9,7 +10,7 @@ int main(){
 
     while (true){
 
-        cin >> n;
+        scanf("%i", &n);
 
         //checks for exit for sequence with length of 1
         if (n == 0){
@@ -25,12 +26,12 @@ int main(){
 
         //gets temperatures
         for (int i = 0; i < n; i++){
-            cin >> x;
+            scanf("%i",&x);
             temp[i] = x;
         }
 
         //gets difference between every term
-        vector<int>sequence {};
+        vector<int>sequence;
 
         for (int i = 0; i < n; i++){
             if (i != n-1){
@@ -39,7 +40,7 @@ int main(){
         }
 
 
-        //finds longest pattern
+        //finds shortest pattern
         int diff = 0;
 
         //finds the shortest difference
