@@ -7,6 +7,7 @@
 
 using namespace std;
 
+
 int main() {
     int t,l,w, tX, tY, cX, cY;
     char room;
@@ -17,9 +18,11 @@ int main() {
 
         vector<int>queue;
 
-        //initialize visited array and steps array
+        //initialize visited array, steps array and sets starting node to 0
         char visited[w][l];
         int steps[w][l];
+        memset(steps, -1, sizeof(steps));
+
         for (int j = 0; j < w; j++){
             for (int k = 0; k < l; k++){
                 cin >> room;
@@ -27,8 +30,7 @@ int main() {
                 if (room == 'C'){
                     queue.push_back(j);
                     queue.push_back(k);
-                    cX = k;
-                    cY = j;
+                    steps[j][k] = 0;
                 }
                 else if (room == 'W'){
                     tX = k;
@@ -37,44 +39,33 @@ int main() {
             }
         }
 
-        for (int j = 0; j < w; j++){
-            for (int k = 0; k < l; k++){
-                steps[j][k] = 5001;
-            }
-        }
-
-//        memset(steps, 5001, sizeof(steps));
-        steps[cY][cX] = 0;
-
         //bfs
 
-        while (!queue.empty()){
+        //moves in every direction possible until target is not -1
 
-            if (steps[tY][tX] != 5001){
-                    break;
-            }
+        while (!queue.empty()){
             //tries to move in all 4 directions
 
-            //down
-            if (visited[first-1][second] != 'X' && steps[first-1][second] == -1 && first-1 < w && first-1 >= 0){
+            //up
+            if (first-1 >= 0 && visited[first-1][second] != 'X' && steps[first-1][second] == -1){
                 steps[first-1][second] = steps[first][second]+1;
                 queue.push_back(first-1);
                 queue.push_back(second);
             }
             //left
-            if (visited[first][second-1] != 'X' && steps[first][second-1] > steps[first][second] && second-1 < l && second-1 >= 0){
+            if (second-1 >= 0 && visited[first][second-1] != 'X' && steps[first][second-1] == -1){
                 steps[first][second-1] = steps[first][second]+1;
                 queue.push_back(first);
                 queue.push_back(second-1);
             }
-            //up
-            if (visited[first+1][second] != 'X' && steps[first+1][second] > steps[first][second] && first+1 < w && first+1 >= 0){
+            //down
+            if (first+1 < w && visited[first+1][second] != 'X' && steps[first+1][second] == -1){
                 steps[first+1][second] = steps[first][second]+1;
                 queue.push_back(first+1);
                 queue.push_back(second);
             }
             //right
-            if (visited[first][second+1] != 'X' && steps[first][second+1] > steps[first][second] && second+1 < l && second+1 >= 0){
+            if (second+1 < l && visited[first][second+1] != 'X' && steps[first][second+1] == -1){
                 steps[first][second+1] = steps[first][second]+1;
                 queue.push_back(first);
                 queue.push_back(second+1);
@@ -85,11 +76,11 @@ int main() {
 
         }
 
-        if (steps[tY][tX] < 60){
-            printf("%i\n", steps[tY][tX]);
+        if (steps[tY][tX] == -1 || steps[tY][tX] >= 60){
+            printf("#notworth\n");
         }
         else{
-            printf("#notworth\n");
+            printf("%i\n", steps[tY][tX]);
         }
     }
 }
