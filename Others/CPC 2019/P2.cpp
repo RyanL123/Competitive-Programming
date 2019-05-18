@@ -7,7 +7,6 @@ using namespace std;
 
 int main() {
     vector<int> luggage;
-    vector<int> diff;
     int n, k, height;
     scanf("%d%d", &n, &k);
     for (int i = 0; i < n; i++){
@@ -16,28 +15,23 @@ int main() {
     }
     sort(luggage.begin(), luggage.begin()+n);
 
-    for (int i = 0; i < luggage.size(); i++){
-        if (i != luggage.size()-1){
-            diff.push_back(luggage[i+1] - luggage[i]);
+    int i = 0, j = n-1, it = 1;
+
+    while (i < j){
+        if (luggage[j] - luggage[i] <= k){
+            printf("%d", j-i+1);
+            break;
         }
-    }
-    int highest = 0;
-    int index = 0;
-    int maxRange = 0;
-    for (int i = 0; i < diff.size(); i++){
-        if (diff[i] > k || highest+diff[i] > k){
-            highest = 0;
-            if (i-index > maxRange){
-                maxRange = i-index;
-            }
-            continue;
+        if (it %2 == 0){
+            j--;
+            it++;
         }
-        if (highest == 0){
-            index = i;
+        else{
+            i++;
+            it++;
         }
-        highest += diff[i];
     }
 
-    printf("%d", highest+1);
+
 
 }
