@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <cstdio>
 
 using namespace std;
@@ -9,61 +8,61 @@ int main(){
     int n, x;
 
     while (true){
-
+        again :
         scanf("%i", &n);
 
-        //checks for exit for sequence with length of 1
         if (n == 0){
             break;
         }
-        else if (n == 1){
-            printf("0\n");
-            break;
-        }
-
-        //stores temperature pattern
-        int temp[n];
 
         //gets temperatures
+        int temp[n];
         for (int i = 0; i < n; i++){
-            scanf("%i",&x);
+            scanf("%i", &x);
             temp[i] = x;
         }
 
-        //gets difference between every term
-        vector<int>sequence;
+        //sequence has length of 1
+        if (n == 1){
+            printf("0\n");
+            goto again;
+        }
+        else if (n == 2){
+            printf("1\n");
+            goto again;
+        }
+
+        //stores difference between temps
+        int difference [50] {0};
 
         for (int i = 0; i < n; i++){
             if (i != n-1){
-                sequence.push_back(temp[i+1]-temp[i]);
+                difference[i] = temp[i+1]-temp[i];
             }
         }
-
-
-        //finds shortest pattern
-        int diff = 0;
 
         //finds the shortest difference
-        for (int i = 0; i < sequence.size(); i++){
-            for (int j = i+1; j < sequence.size(); j++){
-                if (sequence[i] == sequence[j]){
-                    diff = j-i;
+        int length = 1;
+        while (length != n){
+            bool repeats = true;
+            for (int i = 0; i < n-length-1; i++){
+                if (difference[i] != difference[i+length]){
+                    repeats = false;
                     break;
                 }
             }
-
-            //verifies that it is a sequence
-            for (int j = i+1; j < diff; j++){
-                if (sequence[j] != sequence[j+diff]){
-                    break;
-                }
+            if (repeats){
+                break;
             }
+            length++;
         }
 
-        if (diff == 0){
-            diff = sequence.size();
+        //if there are no repeating patterns the length is the entire pattern
+        if (length == n){
+           printf("%i\n", n-1);
         }
-
-        printf("%i\n", diff);
+        else {
+            printf("%i\n", length);
+        }
     }
 }
