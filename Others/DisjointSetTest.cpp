@@ -20,7 +20,7 @@ void unionSet(int parent[], int rank[], int bv, int ev){
         parent[pb] = pe;
         rank[pe] += rank[pb];
     }
-    else{
+    else {
         parent[pe] = pb;
         rank[pb] += rank[pe];
     }
@@ -33,13 +33,6 @@ int main() {
     vector<int> output;
     pair<int,int> edgesArray[edge+1];
 
-    //get every edge with cost and store them as pairs
-    for (int i = 1; i <= edge; i++){
-        int bv, ev;
-        scanf("%i%i", &bv, &ev);
-        edgesArray[i] = make_pair(bv,ev);
-    }
-
     //initialize parents and ranks
     for (int i = 1; i <= vertex; i++){
         parent[i] = i;
@@ -48,8 +41,8 @@ int main() {
 
     //Kruskal's
     for (int i = 1; i <= edge; i++){
-        int bv = edgesArray[i].first;
-        int ev = edgesArray[i].second;
+        int bv, ev;
+        scanf("%i%i", &bv, &ev);
 
         //find the parents of beginning vertex and end vertex
         int pb = find(parent, bv);

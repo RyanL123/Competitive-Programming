@@ -13,15 +13,16 @@ int find(int parent[], int v){
     return find(parent, parent[v]);
 }
 
-void unionSet(int parent[], int rank[], int  bv, int ev){
+void unionSet(int parent[], int rank[], int bv, int ev){
     int pb = find(parent, bv);
     int pe = find(parent, ev);
 
+    //changes parent and rank
     if (rank[pb] < rank[pe]){
         parent[pb] = pe;
         rank[pe] += rank[pb];
     }
-    else{
+    else {
         parent[pe] = pb;
         rank[pb] += rank[pe];
     }
@@ -38,6 +39,7 @@ int main() {
         parent[i] = i;
     }
 
+    //get edges and cost
     for (int i = 1; i < n; i++){
         int weight;
         scanf("%i", &weight);
@@ -47,8 +49,10 @@ int main() {
             edge.push_back(make_tuple(0, i, i+k));
         }
     }
+
     //sort by weight
     sort(edge.begin(), edge.end());
+
     //Kruskal's
     for (int i = 0; i < n; i++){
         int bv = get<1>(edge[i]);
