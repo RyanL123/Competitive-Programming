@@ -6,36 +6,35 @@
 
 using namespace std;
 
+//find with path compression
 int find(int parent[], int v){
     if (parent[v] == v){
         return v;
     }
-    return find(parent, parent[v]);
+    else{
+        return (parent[v] = find(parent, parent[v]));
+    }
 }
 
-void unionSet(int parent[], int rank[], int bv, int ev){
-    int pb = find(parent, bv);
-    int pe = find(parent, ev);
-
+//union by rank
+void unionSet(int parent[], int rank[], int pb, int pe){
     //changes parent and rank
-    if (rank[pb] < rank[pe]){
+    if (parent[pb] == parent[pe]){
         parent[pb] = pe;
-        rank[pe] += rank[pb];
+        rank[pe]++;
     }
-    else {
-        parent[pe] = pb;
-        rank[pb] += rank[pe];
-    }
+    parent[pb] < parent[pe] ? parent[pb] = pe : parent[pe] = pb;
 }
+
 int main() {
-    int n, k, total = 0;
+    int n, k, total = 0, counter = 0;
     scanf("%i%i", &n, &k);
     int rank[n+1], parent[n+1];
     vector<tuple<int,int,int>> edge;
 
     //initialize parent & rank
     for (int i = 1; i <= n; i++){
-        rank[i] = 1;
+        rank[i] = 0;
         parent[i] = i;
     }
 
@@ -52,11 +51,11 @@ int main() {
 
     //sort by weight
     sort(edge.begin(), edge.end());
-
+    int it = 0;
     //Kruskal's
-    for (int i = 0; i < n; i++){
-        int bv = get<1>(edge[i]);
-        int ev = get<2>(edge[i]);
+    while (true){
+        int bv = get<1>(edge[it]);
+        int ev = get<2>(edge[it]);
 
         //find the parents of beginning vertex and end vertex
         int pb = find(parent, bv);
@@ -64,8 +63,14 @@ int main() {
 
         //if edge doesnt form a cycle, add the edge to graph and increase total cost
         if (pb != pe){
-            unionSet(parent, rank, bv, ev);
-            total += get<0>(edge[i]);
+            unionSet(parent, rank, pb, pe);
+            total += get<0>(edge[it]);
+            counter++;
+        }
+        it++;
+        //break when tree is formed
+        if (counter == n-1){
+            break;
         }
     }
     printf("%i", total);
