@@ -12,3 +12,4 @@ CCC '06 J4 - It's tough being a teen!
 
 CCC '09 J4 - Signage
 
+DWITE '10 R4 #4 - Mountain Hiking
