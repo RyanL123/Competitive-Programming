@@ -23,7 +23,9 @@ void unionSet(int parent[], int rank[], int pb, int pe){
         parent[pb] = pe;
         rank[pe]++;
     }
-    parent[pb] < parent[pe] ? parent[pb] = pe : parent[pe] = pb;
+    else {
+        parent[pb] < parent[pe] ? parent[pb] = pe : parent[pe] = pb;
+    }
 }
 
 int main() {
