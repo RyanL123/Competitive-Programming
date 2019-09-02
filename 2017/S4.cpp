@@ -21,13 +21,20 @@ void unionSet(int parent[], int rank[], int pb, int pe){
     }
 }
 
+bool prioritize(const tuple<int, int, int, int>& a, const tuple<int, int, int, int>& b){
+    if (get<0>(a) == get<0>(b)){
+        if (get<3>(a) > get<3>(b)) return true;
+        else return false;
+    }
+    return get<0>(a) < get<0>(b);
+}
+
 int main() {
-    int n, m, d, days = 0;
+    int n, m, d, days = 0, heaviest = -1;
+    bool used = false;
     scanf("%i%i%i", &n, &m, &d);
     int parent[n+1], rank[n+1];
-    vector<tuple<int, int, int>> edges;
-    vector<tuple<int, int, int>> currentPlan;
-    vector<int> graph[n+1];
+    vector<tuple<int, int, int, int>> edges, notAccepted;
 
     //initialize parent and rank
     for (int i = 1; i <= n; i++){
@@ -41,36 +48,51 @@ int main() {
         scanf("%i%i%i", &start, &end, &cost);
         //current plan
         if (i <= n-1){
-            currentPlan.push_back(make_tuple(cost, start, end));
-            graph[start].push_back(end);
-            graph[end].push_back(start);
+            if (cost > heaviest){
+                heaviest = cost;
+            }
+            edges.push_back(make_tuple(cost, start, end, 1));
         }
+        //inactive edges
         else {
-            edges.push_back(make_tuple(cost, start, end));
+            edges.push_back(make_tuple(cost, start, end, 0));
         }
     }
 
-    //apply pipe enhancer to highest cost pipe in active plan
-    sort(currentPlan.begin(), currentPlan.end());
-    get<0>(currentPlan[currentPlan.size()-1]) = max(0, get<0>(currentPlan[currentPlan.size()-1])-d);
-    for (int i = 0; i < currentPlan.size(); i++){
-        edges.push_back(currentPlan[i]);
-    }
-    //sort edges for MST
-    sort(edges.begin(), edges.end());
+    //sort edges for MST, prioritizing pipes in the current plan
+    sort(edges.begin(), edges.end(), prioritize);
 
-    for (int i = 0; i < edges.size(); i++){
+    //Kruskal's
+    for (int i = 0; i < m; i++){
+        int cost = get<0>(edges[i]);
         int bv = get<1>(edges[i]);
         int ev = get<2>(edges[i]);
         int pb = find(parent, bv);
         int pe = find(parent, ev);
 
+        //won't form a cycle
         if (pb != pe){
+            if (cost < heaviest || (cost == heaviest && get<3>(edges[i]) == 1)){
+
+            }
+            else {
+                continue;
+            }
             //check if the current edge is already part of the plan
-            if (graph[bv][0] != ev && graph[ev][0] != bv){
+            if (get<3>(edges[i]) == 0){
                 days++;
             }
             unionSet(parent, rank, pb, pe);
+        }
+        else{
+            notAccepted.push_back(edges[i]);
+        }
+    }
+    sort(notAccepted.begin(), notAccepted.end(), prioritize);
+    for (int i = 0; i < notAccepted.size(); i++){
+        if (get<0>(notAccepted[i]) < d && get<3>(notAccepted[i]) == 1){
+            days--;
+            break;
         }
     }
     printf("%i", days);
