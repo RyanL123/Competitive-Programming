@@ -23,8 +23,10 @@ int main() {
         //loops through k to find most efficient jump, then the current stone to minimum
         int minCost = INT_MAX;
         for (int j = 1; j <= k; j++){
-            if (abs(cost[i] - cost[i-j])+dp[i-j] < minCost){
-                minCost = abs(cost[i] - cost[i-j])+dp[i-j];
+            if (j < i){
+                if (abs(cost[i] - cost[i-j])+dp[i-j] < minCost){
+                    minCost = abs(cost[i] - cost[i-j])+dp[i-j];
+                }
             }
         }
         dp[i] = minCost;
