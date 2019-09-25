@@ -1,5 +1,5 @@
-# CCC Practice Cpp
-Practice for Waterloo's Canadian Computing Competition
+# Competitive-Programming-Cpp
+Practice for competitive programming (mainly consists of CCC problems)
 
 All code written in C++
 
