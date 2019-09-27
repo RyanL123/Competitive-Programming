@@ -1,43 +1,33 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
 int main(){
-    int w, letter_count = 0, space_count = 0, word_count = 0;
+    int w, sum = 7, linebreak = 0;
     cin >> w;
 
-    string words[] {"WELCOME", "TO", "CCC", "GOOD", "LUCK", "TODAY"};
-    vector<string> output {};
-    vector<string> spaces {};
+    string words[] {"TO", "CCC", "GOOD", "LUCK", "TODAY"};
+    int len[] {2, 3, 4, 4, 5};
 
-    //loops through words array
-    for (int i = 0; i < 6; i++){
-
-        //checks if the current line can fit the next word
-        if (letter_count + words[i].length() <= w){
-
-            //increases remaining letter count
-            letter_count += words[i].length();
-
-            //counts the amount of words on the current line
-            word_count++;
-
-            //adds the word to the output
-            output.push_back(words[i]);
+    string output = "WELCOME";
+    for (int i = 0; i < 5; i++){
+        //only add a word if a space can be put in front of it
+        if (sum + len[i] + 1 <= w){
+            sum += len[i] + 1;
+            words[i] = '.' + words[i];
         }
-        else {
-            //if current line is full, add a linebreak to the output
-            output.emplace_back("\n");
-
-            //counts the amount of spaces needed for the current line
-            space_count = w - letter_count;
-
-            //if the spaces are equally apart
-            if (space_count % word_count == 0){
-
+        else{
+            int remaining = w-sum;
+            linebreak = i;
+            int j = linebreak;
+            while (remaining != 0){
+                words[j] = '.' + words[j];
+                remaining--;
+                if (j){
+                }
             }
         }
     }
 }
-
