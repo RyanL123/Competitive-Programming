@@ -1,6 +1,8 @@
 # Competitive-Programming-Cpp
 Practice for competitive programming (mainly consists of CCC problems)
 
+Any file named J# or S# (where # is a year) are CCC problems corresponding to that year
+
 All code written in C++
 
 Most code not commented nor optimized but good enough to AC
