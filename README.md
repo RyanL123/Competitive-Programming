@@ -18,4 +18,6 @@ CCC '09 J4 - Signage
 
 CCC '17 S4 - Minimum Cost Flow
 
+CCC '18 S3 - RoboThieves
+
 DWITE '10 R4 #4 - Mountain Hiking
