@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <climits>
 
 using namespace std;
 
@@ -13,12 +14,13 @@ int main() {
     for (int i = 0; i < 110; i++) {
         for (int j = 0; j < 110; j++) {
             factory[i][j] = 'W';
-            steps[i][j] = 999;
+            steps[i][j] = INT_MAX;
         }
     }
 
     //gets factory floor plan
     vector<pair<int, int>> exits;
+    vector<pair<int, int>> cameras;
     cin >> n >> m;
     for (int i = n - 1; i >= 0; i--) {
         cin >> input;
@@ -32,47 +34,48 @@ int main() {
             if (input[j] == '.') {
                 exits.emplace_back(make_pair(i, j));
             }
+            if (input[j] == 'C'){
+                cameras.emplace_back(make_pair(i, j));
+            }
         }
     }
 
     // starting from every camera, mark all squares with direct line of sight as invalid
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            if (factory[i][j] == 'C') {
-                // loop until a wall is detected
-                // check up
-                int a = i;
-                while (factory[a + 1][j] != 'W') {
-                    if (factory[a + 1][j] == '.' || factory[a + 1][j] == 'S') {
-                        factory[a + 1][j] = 'I';
-                    }
-                    a++;
-                }
-                // check down
-                int b = i;
-                while (factory[b - 1][j] != 'W') {
-                    if (factory[b - 1][j] == '.' || factory[b - 1][j] == 'S') {
-                        factory[b - 1][j] = 'I';
-                    }
-                    b--;
-                }
-                // check right
-                int c = j;
-                while (factory[i][c + 1] != 'W') {
-                    if (factory[i][c + 1] == '.' || factory[i][c + 1] == 'S') {
-                        factory[i][c + 1] = 'I';
-                    }
-                    c++;
-                }
-                // check left
-                int d = j;
-                while (factory[i][d - 1] != 'W') {
-                    if (factory[i][d - 1] == '.' || factory[i][d - 1] == 'S') {
-                        factory[i][d - 1] = 'I';
-                    }
-                    d--;
-                }
+    for (int k = 0; k < cameras.size(); k++) {
+        int i = cameras[k].first;
+        int j = cameras[k].second;
+            // loop until a wall is detected
+            // check up
+        int a = i;
+        while (factory[a + 1][j] != 'W') {
+            if (factory[a + 1][j] == '.' || factory[a + 1][j] == 'S') {
+                factory[a + 1][j] = 'I';
             }
+            a++;
+        }
+        // check down
+        int b = i;
+        while (factory[b - 1][j] != 'W') {
+            if (factory[b - 1][j] == '.' || factory[b - 1][j] == 'S') {
+                factory[b - 1][j] = 'I';
+            }
+            b--;
+        }
+        // check right
+        int c = j;
+        while (factory[i][c + 1] != 'W') {
+            if (factory[i][c + 1] == '.' || factory[i][c + 1] == 'S') {
+                factory[i][c + 1] = 'I';
+            }
+            c++;
+        }
+        // check left
+        int d = j;
+        while (factory[i][d - 1] != 'W') {
+            if (factory[i][d - 1] == '.' || factory[i][d - 1] == 'S') {
+                factory[i][d - 1] = 'I';
+            }
+            d--;
         }
     }
 
@@ -142,7 +145,7 @@ int main() {
     }
 
     for (int i = 0; i < exits.size(); i++) {
-        if (steps[exits[i].first][exits[i].second] == 999) {
+        if (steps[exits[i].first][exits[i].second] == INT_MAX) {
             cout << -1 << endl;
         } else {
             cout << steps[exits[i].first][exits[i].second] << endl;
