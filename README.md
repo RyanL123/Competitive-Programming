@@ -1,8 +1,6 @@
 # Competitive-Programming-Cpp
 Practice for competitive programming (mainly consists of CCC problems)
 
-Any file named J# or S# (where # is a year) are CCC problems corresponding to that year
-
 All code written in C++
 
 Most code not commented nor optimized but good enough to AC
@@ -21,3 +19,24 @@ CCC '17 S4 - Minimum Cost Flow
 CCC '15 S4 - Convex Hull
 
 DWITE '10 R4 #4 - Mountain Hiking
+
+## Important concepts and algorithms (in my opinion)
+
+### Graph Theory
+- [x] Breadth-First Search
+- [x] Depth-First Search
+- [x] Kruskal's
+- [x] Dijkstra's
+
+### Data Structures
+- [x] Disjointed-Set
+- [ ] Segment Tree
+- [ ] Binary Search Tree
+- [ ] Binary Indexed Tree
+- [ ] AVL Tree
+- [ ] Max Heap
+- [ ] Min Heap
+
+### Dynamic Programming
+- [x] Knapsack
+- [x] Minimum Coin Change
