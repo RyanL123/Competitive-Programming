@@ -18,6 +18,8 @@ CCC '17 S4 - Minimum Cost Flow
 
 DWITE '10 R4 #4 - Mountain Hiking
 
+DMOPC '15 Contest 3 P4 - Contagion
+
 ## Important concepts and algorithms (in my opinion)
 
 ### Graph Theory
