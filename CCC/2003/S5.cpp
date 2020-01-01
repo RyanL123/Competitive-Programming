@@ -3,6 +3,7 @@
 #include <tuple>
 #include <vector>
 #include <algorithm>
+#include <queue>
 
 using namespace std;
 
@@ -18,12 +19,14 @@ void unionSet(int parent[], int rank[], int pb, int pe){
     }
     parent[pb] < parent[pe] ? parent[pb] = pe : parent[pe] = pb;
 }
+
+int maxW[10010];
 int main() {
     int vertex, edge, destination, placed = 0, min = 1000000;
     vector<tuple<int,int,int>> edges;
     scanf("%i%i%i", &vertex, &edge, &destination);
     int rank[vertex+1], parent[vertex+1];
-    vector<tuple<int,int>> graph[vertex+1];
+    vector<pair<int,int>> graph[vertex+1];
     vector<int> desCities;
 
 
@@ -54,21 +57,44 @@ int main() {
         if (pb != pe){
             unionSet(parent, rank, pb, pe);
             placed++;
-            graph[get<1>(edges[i])].push_back(make_tuple(get<0>(edges[i]), get<2>(edges[i])));
-            graph[get<2>(edges[i])].push_back(make_tuple(get<0>(edges[i]), get<1>(edges[i])));
+            graph[get<1>(edges[i])].push_back(make_pair(get<0>(edges[i]), get<2>(edges[i])));
+            graph[get<2>(edges[i])].push_back(make_pair(get<0>(edges[i]), get<1>(edges[i])));
         }
         if (placed == vertex-1) break;
     }
 
-    for (int i = 1; i <= vertex; i++){
-        //if the current city is a destination city
-        if (find(desCities.begin(), desCities.end(), i) != desCities.end()){
-            for (int j = 0; j < graph[i].size(); j++){
-                if (get<0>(graph[i][j]) < min && (graph[get<1>(graph[i][j])].size()) != 1){
-                    min = get<0>(graph[i][j]);
+    //BFS to find min weight that can be driven through all cities
+    bool visited[10010] {false};
+    queue<pair<int, int>> q;
+    visited[1] = true;
+    q.push(make_pair(min, 1));
+    while (!q.empty()){
+        int w = q.front().first;
+        int node = q.front().second;
+        q.pop();
+        for (int i = 0; i < graph[node].size(); i++){
+            if (!visited[graph[node][i].second]){
+                q.push(make_pair(graph[node][i].first, graph[node][i].second));
+                visited[graph[node][i].second] = true;
+                //If the weight to get to the next city is lower than
+                //the weight that is used to get to this city,
+                //lower the weight cap
+                if (graph[node][i].first < w){
+                    maxW[graph[node][i].second] = graph[node][i].first;
+                }
+                //Otherwise the weight cap remains the same
+                else {
+                    maxW[graph[node][i].second] = w;
                 }
             }
         }
     }
-    cout << min;
+
+    //Find min
+    for (int i = 0; i < desCities.size(); i++){
+        if (maxW[desCities[i]] < min){
+            min = maxW[desCities[i]];
+        }
+    }
+    printf("%i", min);
 }
