@@ -36,3 +36,13 @@ CCC '17 S4 - Minimum Cost Flow
 ### Dynamic Programming
 - [x] Knapsack
 - [x] Minimum Coin Change
+
+# Achievements in 2019
+
+- CCC Junior 60
+- First Hackathon
+- Learned new language (C++)
+- Learned Git
+- Implemented countless algorithms
+- Made a discord bot
+- Made a website
