@@ -14,6 +14,12 @@ CCC '09 J4 - Signage
 
 CCC '17 S4 - Minimum Cost Flow
 
+Fast Factorial Calculator
+
+A Coin Problem
+
+Segment Tree Test
+
 ## Important concepts and algorithms (in my opinion)
 
 ### Graph Theory

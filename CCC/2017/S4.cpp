@@ -21,6 +21,7 @@ void unionSet(int parent[], int rank[], int pb, int pe){
     }
 }
 
+// Prioritize edges that are in the current plan
 bool prioritize(const tuple<int, int, int, int>& a, const tuple<int, int, int, int>& b){
     if (get<0>(a) == get<0>(b)){
         if (get<3>(a) > get<3>(b)) return true;
@@ -72,11 +73,14 @@ int main() {
 
         //won't form a cycle
         if (pb != pe){
+            // Enhancer cannot be used
             if (cost < heaviest || (cost == heaviest && get<3>(edges[i]) == 1)){
-
+                //continue code
             }
-            else {
-                continue;
+            // Enhancer can be used
+            else if (cost <= d && get<3>(edges[i]) == 0 && !used){
+                days--;
+                used = true;
             }
             //check if the current edge is already part of the plan
             if (get<3>(edges[i]) == 0){
@@ -88,12 +92,12 @@ int main() {
             notAccepted.push_back(edges[i]);
         }
     }
-    sort(notAccepted.begin(), notAccepted.end(), prioritize);
-    for (int i = 0; i < notAccepted.size(); i++){
-        if (get<0>(notAccepted[i]) < d && get<3>(notAccepted[i]) == 1){
-            days--;
-            break;
-        }
-    }
+//    sort(notAccepted.begin(), notAccepted.end(), prioritize);
+//    for (int i = 0; i < notAccepted.size(); i++){
+//        if (get<0>(notAccepted[i]) < d && get<3>(notAccepted[i]) == 1){
+//            days--;
+//            break;
+//        }
+//    }
     printf("%i", days);
 }
