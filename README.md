@@ -20,6 +20,8 @@ A Coin Problem
 
 Segment Tree Test
 
+Longest Increasing Subsequence
+
 ## Important concepts and algorithms (in my opinion)
 
 ### Graph Theory
