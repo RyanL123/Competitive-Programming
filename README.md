@@ -22,6 +22,8 @@ Longest Increasing Subsequence
 
 Another Contest 1 Problem 3 - Poutine
 
+CCO '10 P6 - Shuffle
+
 ## Important concepts and algorithms (in my opinion)
 
 ### Graph Theory
