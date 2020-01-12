@@ -22,8 +22,6 @@ Longest Increasing Subsequence
 
 Another Contest 1 Problem 3 - Poutine
 
-CCO '10 P6 - Shuffle
-
 Knapsack 2
 
 ## Important concepts and algorithms (in my opinion)
@@ -36,7 +34,7 @@ Knapsack 2
 
 ### Data Structures
 - [x] Disjointed-Set
-- [ ] Segment Tree
+- [x] Segment Tree
 - [ ] Binary Search Tree
 - [ ] Binary Indexed Tree
 - [ ] AVL Tree
