@@ -4,48 +4,23 @@
 
 using namespace std;
 
-// Lazy tree stored as <increment val, set val>
 // If a set val is pushed after increment val, increment val will be overridden to 0
 // If a set value is pushed before increment val, increment val will increment the set val instead
-void pushIncrement(int node, int tree[], pair<int, int> lazy[]){
-    // There is a Set value
-    if (lazy[node].second != -1){
-        // Update value in seg tree
-        tree[node*2] += lazy[node].first + lazy[node].second;
-        tree[node*2+1] += lazy[node].first + lazy[node].second;
-        // Propagate children
-        // Takes into account value of Set
-        lazy[node*2].first += lazy[node].first + lazy[node].second;
-        lazy[node*2+1].first += lazy[node].first + lazy[node].second;
-        lazy[node*2].second = -1;
-        lazy[node*2+1].second = -1;
+void pushSet(int node, int tree[], pair<int, int> lazy[]){
+    if (lazy[node].second != 0){
+        lazy[node*2].second = lazy[node*2+1].second = lazy[node].second;
+        lazy[node].second = 0;
     }
-    // There is not a Set value
-    else {
-        tree[node*2] += lazy[node].first;
-        tree[node*2+1] += lazy[node].first;
-        lazy[node*2].first += lazy[node].first;
-        lazy[node*2].first += lazy[node].first;
-    }
-    // Clear value in lazy after propagation
-    lazy[node].first = 0;
 }
 
-void pushSet(int node, int tree[], pair<int, int> lazy[]){
-    // Update to set value
-    if (lazy[node].second != -1){
-        // Update value in seg tree
-        tree[node*2] = lazy[node].second;
-        tree[node*2+1] = lazy[node].second;
-        // Propagate children
-        // Overrides value of increment
-        lazy[node*2].first = 0;
-        lazy[node*2+1].first = 0;
-        lazy[node*2].second = lazy[node].second;
-        lazy[node*2+1].second = lazy[node].second;
-    }
-    else {
-        return;
+void pushIncrement(int node, int tree[], pair<int, int> lazy[]){
+    if (lazy[node].first != 0){
+        if (lazy[node].second != 0){
+            pushSet(node, tree, lazy);
+        }
+        lazy[node*2].first += lazy[node].first;
+        lazy[node*2+1].first += lazy[node].first;
+        lazy[node].first = 0;
     }
 }
 
@@ -77,21 +52,40 @@ int queryMin(int node, int tl, int tr, int l, int r, int tree[], int arr[], pair
 }
 
 void incrementRange(int node, int tl, int tr, int l, int r, int x, int tree[], pair<int, int> lazy[]){
-    // No overlap, skip
     if (l > r){
         return;
     }
+    // Update current node if it is not up to date
+    if (lazy[node].first != 0){
+        if (lazy[node].second != 0){
+            tree[node] = lazy[node].second;
+            if (l != r){
+                lazy[node*2].second += lazy[node].second;
+                lazy[node*2+1].second += lazy[node].second;
+            }
+            lazy[node].second = 0;
+        }
+        tree[node] += lazy[node].first;
+        if (l != r){
+            lazy[node*2].first += lazy[node].first;
+            lazy[node*2+1].first += lazy[node].first;
+        }
+        lazy[node].first = 0;
+    }
     if (tl == l && tr == r){
-        // Complete overlap, only one update is needed for each tree
+        // Update tree
         tree[node] += x;
-        lazy[node].first += x;
+        // Propagate children
+        if (l != r){
+            lazy[node*2].first += x;
+            lazy[node*2+1].first += x;
+        }
     }
     else {
-        // Partial overlap, propagate children recursively
-        pushIncrement(node, tree, lazy);
         int mid = (tl + tr)/2;
         incrementRange(node*2, tl, mid, l, min(r, mid), x, tree, lazy);
         incrementRange(node*2+1, mid+1, tr, max(mid+1, l), r, x, tree, lazy);
+        tree[node] = min(tree[2*node], tree[2*node+1]);
     }
 }
 
@@ -99,15 +93,29 @@ void setRange(int node, int tl, int tr, int l, int r, int x, int tree[], pair<in
     if (l > r){
         return;
     }
+    // Update current node if it is not up to date
+    if (lazy[node].second != 0){
+        tree[node] = lazy[node].second;
+        if (l != r){
+            lazy[node*2].second = lazy[node].second;
+            lazy[node*2+1].second = lazy[node].second;
+        }
+        lazy[node].second = 0;
+    }
     if (tl == l && tr == r){
+        // Update tree
         tree[node] = x;
-        lazy[node].second = -1;
+        // Propagate children
+        if (l != r){
+            lazy[node*2].second = x;
+            lazy[node*2+1].second = x;
+        }
     }
     else {
-        pushSet(node, tree, lazy);
         int mid = (tl + tr)/2;
         setRange(node*2, tl, mid, l, min(mid, r), x, tree, lazy);
         setRange(node*2+1, mid+1, tr, max(mid+1, l), r, x, tree, lazy);
+        tree[node] = min(tree[2*node], tree[2*node+1]);
     }
 }
 
@@ -121,7 +129,8 @@ int main() {
     }
     // Initialize lazy tree
     for (int i = 0; i < 4*n; i++){
-        lazy[i] = make_pair(0, -1);
+        lazy[i].first = 0;
+        lazy[i].second = 0;
     }
     buildMin(1, 0, n-1, tree, arr);
     for (int i = 0; i < q; i++){

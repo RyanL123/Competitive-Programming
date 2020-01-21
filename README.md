@@ -24,6 +24,8 @@ Another Contest 1 Problem 3 - Poutine
 
 Knapsack 2
 
+Strict Evaluation
+
 ## Important concepts and algorithms (in my opinion)
 
 ### Graph Theory
