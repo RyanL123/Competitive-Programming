@@ -16,8 +16,6 @@ CCC '17 S4 - Minimum Cost Flow
 
 Fast Factorial Calculator
 
-A Coin Problem
-
 Longest Increasing Subsequence
 
 Another Contest 1 Problem 3 - Poutine
