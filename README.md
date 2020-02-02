@@ -10,8 +10,6 @@ Most code not commented nor optimized but good enough to AC
 ## Partially completed problems
 CCC '06 J4 - It's tough being a teen!
 
-CCC '09 J4 - Signage
-
 CCC '17 S4 - Minimum Cost Flow
 
 Fast Factorial Calculator
