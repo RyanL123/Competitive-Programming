@@ -5,6 +5,7 @@
 
 using namespace std;
 
+int maxLuggage[300010];
 int main() {
     vector<int> luggage;
     int n, k, height;
@@ -14,24 +15,15 @@ int main() {
         luggage.push_back(height);
     }
     sort(luggage.begin(), luggage.begin()+n);
-
-    int i = 0, j = n-1, it = 1;
-
-    while (i < j){
-        if (luggage[j] - luggage[i] <= k){
-            printf("%d", j-i+1);
-            break;
-        }
-        if (it %2 == 0){
-            j--;
-            it++;
-        }
-        else{
-            i++;
-            it++;
+    for (int i = 0; i < n; i++){
+        int highest = distance(luggage.begin(), upper_bound(luggage.begin()+i, luggage.end(), luggage[i]+k));
+        maxLuggage[i] = highest - i;
+    }
+    int max = 0;
+    for (int i = 0; i < n; i++){
+        if (maxLuggage[i] > max){
+            max = maxLuggage[i];
         }
     }
-
-
-
+    printf("%d", max);
 }
