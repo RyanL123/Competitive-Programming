@@ -18,24 +18,20 @@ int main() {
         cin >> combos[i];
         cin >> points[i];
     }
-    int start = 0, i = 1; // i = len of substring
-    bool noCombos = true;
-    int score = 0;
-    int minLength = 0;
-    while (start != s.length()){
-        if (start+i > s.length()){
-            i = 1;
-            start++;
-        }
-        for (int k = start; k < s.length(); k++) {
-            for (int j = 0; j < m; j++) {
-                if (s.substr(start, i) == combos[j]) {
-                    minLength = combos[j].length();
-                    score = points[j];
-                    noCombos = false;
+    int end = 0;
+    while (end < s.length()){
+        bool comboFound = false;
+        for (int i = s.length(); i >= end; i--){
+            for (int j = 0; j < m; j++){
+                if (s.substr(end, i) == combos[j]){
+                    finalScore += points[j];
+                    end = i+1;
+                    comboFound = true;
                 }
             }
-            i++;
+        }
+        if (!comboFound){
+            end++;
         }
     }
     cout << finalScore;

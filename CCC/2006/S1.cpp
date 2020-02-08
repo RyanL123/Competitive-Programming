@@ -17,21 +17,23 @@ int main() {
         bool baby = true;
         for (int i = 0; i < b.length(); i++){
             if (islower(b[i])){
-                if (((isupper(m[i]) && isupper(m[i+1])) || (isupper(d[i]) && isupper(d[i+1])))){
+                if (((isupper(m[2*i]) && isupper(m[2*i+1])) || (isupper(d[2*i]) && isupper(d[2*i+1])))){
                     baby = false;
+                    break;
                 }
             }
             else {
-                if (islower(m[i]) && islower(m[i+1]) && islower(d[i]) && islower(d[i+1])){
+                if (islower(m[2*i]) && islower(m[2*i+1]) && islower(d[2*i]) && islower(d[2*i+1])){
                     baby = false;
+                    break;
                 }
             }
         }
         if (baby){
-            cout << "Not their baby!" << endl;
+            cout << "Possible baby." << endl;
         }
         else {
-            cout << "Possible baby." << endl;
+            cout << "Not their baby!" << endl;
         }
     }
 }
