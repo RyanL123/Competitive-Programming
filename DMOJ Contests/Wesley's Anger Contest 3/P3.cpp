@@ -12,26 +12,39 @@ int main() {
     cin >> s;
     int m, finalScore = s.length();
     cin >> m;
-    string combos[m];
-    int points[m];
+    pair<string, int> combos[m];
     for (int i = 0; i < m; i++){
-        cin >> combos[i];
-        cin >> points[i];
+        string c;
+        int p;
+        cin >> c >> p;
+        combos[i] = make_pair(c, p);
     }
-    int end = 0;
-    while (end < s.length()){
-        bool comboFound = false;
-        for (int i = s.length(); i >= end; i--){
-            for (int j = 0; j < m; j++){
-                if (s.substr(end, i) == combos[j]){
-                    finalScore += points[j];
-                    end = i+1;
-                    comboFound = true;
-                }
+    int len = 0;
+    int start = 0;
+    int longest = 0;
+    int longestIndex = -1;
+    while (start <= s.length()){
+        for (int i = 0; i < m; i++){
+            if (s.substr(start, len) == combos[i].first && combos[i].first.length() > longest){
+                longest = combos[i].first.length();
+                longestIndex = i;
             }
         }
-        if (!comboFound){
-            end++;
+        if (start+len > s.length()){
+            if (longestIndex != -1){
+                finalScore += combos[longestIndex].second;
+                start += longest;
+                len = 0;
+                longest = 0;
+                longestIndex = -1;
+            }
+            else {
+                start++;
+                len = 0;
+            }
+        }
+        else {
+            len++;
         }
     }
     cout << finalScore;
