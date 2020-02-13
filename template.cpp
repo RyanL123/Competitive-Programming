@@ -1,12 +1,4 @@
-#include <iostream>
-#include <cstdio>
-#include <vector>
-#include <algorithm>
-#include <climits>
-#include <cmath>
-#include <utility>
-#include <numeric>
-#include <queue>
+#include <bits/stdc++.h>
 using namespace std;
 typedef pair<int, int> pii;
 typedef vector<pair<int, int>> vii;
