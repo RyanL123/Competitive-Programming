@@ -3,22 +3,22 @@
 using namespace std;
 
 vector<pair<int, int>> graph[10][9];
-int values[10][9];
+unsigned long long values[10][9];
 
-int dfs(int x, int y, bool visited[10][9], int start, int end){
+unsigned long long dfs(int x, int y, bool visited[10][9]){
     if (visited[x][y] && values[x][y] == -1){
-        return INT_MAX;
-    }
-    if (graph[x][y].empty()){
-        return values[x][y];
+        return 10000000000;
     }
     if (values[x][y] != -1){
         return values[x][y];
     }
+    if (graph[x][y].empty()){
+        return values[x][y];
+    }
     visited[x][y] = true;
-    int total = 0;
+    unsigned long long total = 0;
     for (int i = 0; i < graph[x][y].size(); i++){
-        total += dfs(graph[x][y][i].first, graph[x][y][i].second, visited, x, y);
+        total += dfs(graph[x][y][i].first, graph[x][y][i].second, visited);
     }
     values[x][y] = total;
     return total;
@@ -61,7 +61,7 @@ int main(){
     for (int i = 0; i < 10; i++){
         for (int j = 0; j < 9; j++){
             if (graph[i][j].empty()){
-                if (values[i][j] > 10000 || values[i][j] < 0){
+                if (values[i][j] >= 1000000000 || values[i][j] < 0){
                     cout << "* ";
                 }
                 else {
@@ -75,8 +75,8 @@ int main(){
                         visited[k][l] = false;
                     }
                 }
-                int ans = dfs(i, j, visited, i, j);
-                if (ans > 10000 || ans < 0){
+                unsigned long long ans = dfs(i, j, visited);
+                if (ans >= 1000000000 || ans < 0){
                     cout << "* ";
                 }
                 else {
