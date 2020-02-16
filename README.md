@@ -7,7 +7,12 @@ Most code not commented nor optimized but good enough to AC
 
 [DMOJ Profile](https://dmoj.ca/user/RyanLi)
 
-## Partially completed problems
+Some problems have the same name as their respective DMOJ URL
+
+For example: 
+> dmoj.ca/problem/**dmopc15c3p4**
+
+## Incomplete completed problems (In no particular order)
 CCC '06 J4 - It's tough being a teen!
 
 CCC '17 S4 - Minimum Cost Flow
@@ -18,35 +23,36 @@ Longest Increasing Subsequence
 
 Another Contest 1 Problem 3 - Poutine
 
-Knapsack 2
+MWC '15 #2 P4: Robotics Summative
 
-## Important concepts and algorithms (in my opinion)
+Back From Summer '19 P2: Straying From God's Light
 
-### Graph Theory
-- [x] Breadth-First Search
-- [x] Depth-First Search
-- [x] Kruskal's
-- [x] Dijkstra's
+Back From Summer '19 P3: ASDFGHJKL
 
-### Data Structures
-- [x] Disjointed-Set
-- [x] Segment Tree
-- [ ] Binary Search Tree
-- [ ] Binary Indexed Tree
-- [ ] AVL Tree
-- [ ] Max Heap
-- [ ] Min Heap
+Back To School '19: Chemistry
 
-### Dynamic Programming
-- [x] Knapsack
-- [x] Minimum Coin Change
+Back To School '19: Parkour
 
-# Achievements in 2019
+Mock CCC '20 Contest 1 J4 - A Binary Problem
 
-- CCC Junior 60
-- First Hackathon
-- Learned new language (C++)
-- Learned Git
-- Implemented countless algorithms
-- Made a discord bot
-- Made a website
+Mock CCC '19 Contest 1 J3 - Pusheen Eats Tuna Sashimi and Tuna Nigiri
+
+PalinDrone
+
+DMOPC '19 Contest 4 P2 - Pleasant Present
+
+DMOPC '19 Contest 4 P6 - little_prince's Specialty Tea House
+
+DMOPC '19 Contest 3 P2 - Generating Names
+
+DMPG '19 B2 - Rectangular Molecules
+
+DMOPC '18 Contest 6 P0 - SQL Queries
+
+CCC '96 S2 - Divisibility by 11
+
+GlobeX Cup '19 S2 - Predicting Collisions
+
+Wesley's Anger Contest 2 Problem 2 - Costume Shopping
+
+Valentine's Day '19 J3 - Love!
