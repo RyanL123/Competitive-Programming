@@ -1,16 +1,23 @@
 # Competitive-Programming-Cpp
-Practice for competitive programming (mainly consists of CCC problems)
+- Practice for competitive programming (mainly consists of CCC problems)
 
-All code written in C++
+- All code written in C++
 
-Most code not commented nor optimized but good enough to AC
-
-[DMOJ Profile](https://dmoj.ca/user/RyanLi)
+- Most code not commented nor optimized but good enough to AC
 
 Some problems have the same name as their respective DMOJ URL
 
 For example: 
+
 > dmoj.ca/problem/**dmopc15c3p4**
+
+[DMOJ Profile](https://dmoj.ca/user/RyanLi)
+
+## Achievements
+
+CCC 2019 Junior: 60
+
+CCC 2020 Senior: 37
 
 ## Incomplete completed problems (In no particular order)
 CCC '06 J4 - It's tough being a teen!
@@ -44,10 +51,6 @@ DMOPC '19 Contest 4 P2 - Pleasant Present
 DMOPC '19 Contest 4 P6 - little_prince's Specialty Tea House
 
 DMOPC '19 Contest 3 P2 - Generating Names
-
-DMPG '19 B2 - Rectangular Molecules
-
-DMOPC '18 Contest 6 P0 - SQL Queries
 
 CCC '96 S2 - Divisibility by 11
 
