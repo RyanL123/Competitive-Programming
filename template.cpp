@@ -4,8 +4,7 @@ typedef pair<int, int> pii;
 typedef vector<pair<int, int>> vii;
 typedef long long ll;
 typedef unsigned long long ull;
-#define pb(a, b) push_back(a, b)
-#define eb(a, b) emplace_back(a, b)
+#define pb(x) push_back(x)
 #define inf INT_MAX
 
 int main() {

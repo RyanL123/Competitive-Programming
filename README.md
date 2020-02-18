@@ -20,7 +20,6 @@ CCC 2019 Junior: 60
 CCC 2020 Senior: 37
 
 ## Incomplete completed problems (In no particular order)
-CCC '06 J4 - It's tough being a teen!
 
 CCC '17 S4 - Minimum Cost Flow
 
