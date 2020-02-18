@@ -40,8 +40,6 @@ Back To School '19: Parkour
 
 Mock CCC '20 Contest 1 J4 - A Binary Problem
 
-Mock CCC '19 Contest 1 J3 - Pusheen Eats Tuna Sashimi and Tuna Nigiri
-
 PalinDrone
 
 DMOPC '19 Contest 4 P2 - Pleasant Present
@@ -55,5 +53,3 @@ CCC '96 S2 - Divisibility by 11
 GlobeX Cup '19 S2 - Predicting Collisions
 
 Wesley's Anger Contest 2 Problem 2 - Costume Shopping
-
-Valentine's Day '19 J3 - Love!
