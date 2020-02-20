@@ -19,7 +19,7 @@ CCC 2019 Junior: 60
 
 CCC 2020 Senior: 37
 
-## Incomplete completed problems (In no particular order)
+## Incomplete problems (In no particular order)
 
 CCC '17 S4 - Minimum Cost Flow
 
