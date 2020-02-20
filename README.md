@@ -52,3 +52,5 @@ CCC '96 S2 - Divisibility by 11
 GlobeX Cup '19 S2 - Predicting Collisions
 
 Wesley's Anger Contest 2 Problem 2 - Costume Shopping
+
+CCO '15 P4 - Cars on Ice
