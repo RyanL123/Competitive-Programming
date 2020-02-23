@@ -3,21 +3,22 @@
 
 using namespace std;
 
-unsigned long long modulo = pow(2, 32);
-unsigned long long fact(unsigned long long n){
-    unsigned long long answer = 1;
-    for (unsigned long long j = n; j > 0; j--){
-        answer = (answer%modulo * j%modulo)%modulo;
-        answer %= modulo;
-    }
-    return answer;
-}
+unsigned long long mod = pow(2, 32);
 
 int main(){
     unsigned long long n, a;
     cin >> n;
     for (int i = 0; i < n; i++){
         cin >> a;
-        cout << fact(a) << endl;
+        if (a > 33){
+            cout << 0 << endl;
+        }
+        else {
+            unsigned long long ans = 1;
+            for (int j = 2; j <= a; j++){
+                ans = (ans%mod * j%mod)%mod;
+            }
+            cout << ans << endl;
+        }
     }
 }
