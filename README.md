@@ -23,8 +23,6 @@ CCC 2020 Senior: 37
 
 CCC '17 S4 - Minimum Cost Flow
 
-Fast Factorial Calculator
-
 Longest Increasing Subsequence
 
 Another Contest 1 Problem 3 - Poutine
