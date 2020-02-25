@@ -42,19 +42,21 @@ int main() {
     }
     else if (k == 2){
         for (int i = 0; i < 26; i++){
-            for (int j = 0; j < 26; j++) {
+            for (int j = 0; j < 26; j++){
                 long long denominator = 1;
-                charCount[j] += 1;
+                if (i == j){
+                    denominator *= fact(charCount[j]+2);
+                }
+                else {
+                    denominator *= fact(charCount[i]+1);
+                    denominator *= fact(charCount[j]+1);
+                }
                 for (int l = 0; l < 26; l++){
-                    if (l == j || l == i){
-                        denominator *= fact(charCount[l]+1);
-                    }
-                    else{
+                    if (l != j && l != i){
                         denominator *= fact(charCount[l]);
                     }
                 }
-                charCount[j] -= 1;
-                result += factN / denominator;
+                result += factN/denominator;
             }
         }
     }
