@@ -33,8 +33,6 @@ Back From Summer '19 P2: Straying From God's Light
 
 Back From Summer '19 P3: ASDFGHJKL
 
-Back To School '19: Parkour
-
 Mock CCC '20 Contest 1 J4 - A Binary Problem
 
 PalinDrone
