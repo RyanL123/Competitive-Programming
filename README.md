@@ -33,8 +33,6 @@ Back From Summer '19 P2: Straying From God's Light
 
 Back From Summer '19 P3: ASDFGHJKL
 
-Mock CCC '20 Contest 1 J4 - A Binary Problem
-
 PalinDrone
 
 DMOPC '19 Contest 4 P2 - Pleasant Present
