@@ -7,7 +7,7 @@ typedef long long ll;
 typedef unsigned long long ull;
 #define pb(x) push_back(x)
 #define mp(a, b) make_pair(a, b)
-#define inf INT_MAX
+#define inf 0x3f3f3f3f
 
 int main() {
     cin.sync_with_stdio(0);
