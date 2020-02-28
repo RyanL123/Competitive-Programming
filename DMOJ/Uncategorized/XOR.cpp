@@ -2,16 +2,18 @@
 
 using namespace std;
 
+long long XOR(long long num){
+    long long ans[4] = {num, 1, num+1, 0};
+    return ans[num%4];
+}
+
 int main() {
-    int a,b,c;
-    int d;
-    cin >> a;
-    for (int i = 0; i < a; i++){
-        cin >> b >> c;
-        d = b;
-        for (int j = b+1; j < c+1; j++){
-            d = d^j;
-        }
-        cout << d << endl;
+    long long t, s, f;
+    cin >> t;
+
+    while (t--){
+        cin >> s >> f;
+        long long ans = XOR(s-1)^XOR(f);
+        cout << ans << endl;
     }
 }
