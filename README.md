@@ -48,3 +48,7 @@ GlobeX Cup '19 S2 - Predicting Collisions
 Wesley's Anger Contest 2 Problem 2 - Costume Shopping
 
 CCO '15 P4 - Cars on Ice
+
+Raytracing
+
+Athena on Zanzibar Island
