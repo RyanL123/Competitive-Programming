@@ -21,8 +21,6 @@ CCC 2020 Senior: 37
 
 ## Incomplete problems (In no particular order)
 
-CCC '17 S4 - Minimum Cost Flow
-
 Longest Increasing Subsequence
 
 Another Contest 1 Problem 3 - Poutine
