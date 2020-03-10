@@ -18,16 +18,16 @@ int main() {
         if (x < left){
             left = x;
         }
-        else if (x > right){
+        if (x > right){
             right = x;
         }
         if (y > top){
             top = y;
         }
-        else if (y < bottom){
+        if (y < bottom){
             bottom = y;
         }
     }
-    printf("%d,%d\n", left-1, bottom-1);
-    printf("%d,%d\n", right+1, top+1);
+    printf("%d,%d\n", min(left-1, right+1), min(bottom-1, top+1));
+    printf("%d,%d\n", max(left-1, right+1), max(bottom-1, top+1));
 }

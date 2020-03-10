@@ -19,7 +19,7 @@ int main() {
     bool flag = false;
     for (int i = 0; i < s.length(); i++){
         if (flag) break;
-        for (int j = 0; j < t.length()-s.length(); j++){
+        for (int j = 0; j <= t.length()-s.length(); j++){
             if (t.substr(j, s.length()) == s){
                 flag = true;
                 break;
