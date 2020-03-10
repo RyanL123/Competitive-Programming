@@ -13,9 +13,9 @@ typedef unsigned long long ull;
 int arr[1000010];
 int sorted[1000010];
 
-int binarySearch(int lo, int hi, int val){
+ll binarySearch(ll lo, ll hi, ll val){
     while (lo < hi){
-       int m = (lo+hi)/2;
+       ll m = (lo+hi)/2;
        if (abs(val+sorted[m]) < abs(val+sorted[m+1])){
             hi = m;
        }
@@ -41,15 +41,18 @@ int main() {
     copy(arr, arr+n, sorted);
     sort(sorted,sorted+n);
     ll lowestDiff = LONG_LONG_MAX;
-    ll lowestI = 0, lowestJ = 0;
+    ll lowestI = inf, lowestJ = inf;
     // Finds lowest diff and the values its obtained from
     // Uses binary search in NlogN + logN
-    for (int i = 0; i < n; i++){
+    for (ll i = 0; i < n; i++){
         ll lowestIndex = binarySearch(i+1, n-1, sorted[i]);
         if (abs(sorted[i] + sorted[lowestIndex]) <= lowestDiff){
-            lowestI = sorted[i];
-            lowestJ = sorted[lowestIndex];
-            lowestDiff = abs(sorted[i] + sorted[lowestIndex]);
+            if (min(i, lowestIndex)*10000000 + max(i, lowestIndex) <
+                min(lowestI, lowestJ)*10000000 + max(lowestI, lowestJ)){
+                lowestI = sorted[i];
+                lowestJ = sorted[lowestIndex];
+                lowestDiff = abs(sorted[i] + sorted[lowestIndex]);
+            }
         }
     }
     // Linear search to locate the indices of the elements in the unsorted array

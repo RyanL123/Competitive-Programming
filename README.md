@@ -48,3 +48,5 @@ Wesley's Anger Contest 2 Problem 2 - Costume Shopping
 Raytracing
 
 Athena on Zanzibar Island
+
+Coins
