@@ -50,5 +50,3 @@ Raytracing
 Athena on Zanzibar Island
 
 Coins
-
-DMOPC '18 Contest 4 P2 - Dr. Henri and Responsibility
