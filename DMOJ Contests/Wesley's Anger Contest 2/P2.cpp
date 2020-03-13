@@ -1,44 +1,30 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 
 using namespace std;
+typedef pair<int, int> pii;
+typedef vector<pair<int, int>> vii;
+typedef vector<int> vi;
+typedef long long ll;
+typedef unsigned long long ull;
+#define pb(x) push_back(x)
+#define mp(a, b) make_pair(a, b)
+#define inf 0x3f3f3f3f
 
 int main() {
-    long long n, m, total = 0;
-    int q, d = 0, p = -1;
-    vector<pair<int, int>> prices;
-    vector<int> usedDays;
+    cin.sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    ll n, m, q, total = 0;
+    vector<tuple<ll, ll, ll>> costumes;
     cin >> n >> m >> q;
+    ll lastDay = n;
     for (int i = 0; i < q; i++){
-        int previousDay = d;
-        int previousDayPrice = p;
+        ll d, p;
         cin >> d >> p;
-
-        if (previousDay != d && previousDayPrice != -1){
-            for (int i = 1; i <= abs(previousDay-d); i++){
-                prices.push_back(make_pair(previousDayPrice, previousDay-i));
-            }
-        }
-        prices.push_back(make_pair(p, d));
+        costumes.pb(make_tuple(p, lastDay, d));
+        lastDay = d;
     }
-
-    // Sort by price
-    sort(prices.begin(), prices.end());
-
-    int count = 0;
-    for (int i = 0; i < prices.size(); i++){
-        // Buy m times
-        if (count == m){
-            break;
-        }
-        // Ignores days that have already been used to buy a costume
-        if (find(usedDays.begin(), usedDays.end(), prices[i].second) == usedDays.end()){
-            // Record the day bought and add the price to the total
-            total += prices[i].first;
-            usedDays.push_back(prices[i].second);
-            count++;
-        }
-    }
-    cout << total << endl;
+    sort(costumes.begin(), costumes.end());
+    vector<ll> used;
+    cout << total << "\n";
 }
