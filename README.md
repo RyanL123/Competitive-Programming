@@ -27,8 +27,6 @@ Another Contest 1 Problem 3 - Poutine
 
 MWC '15 #2 P4: Robotics Summative
 
-Back From Summer '19 P2: Straying From God's Light
-
 Back From Summer '19 P3: ASDFGHJKL
 
 PalinDrone
