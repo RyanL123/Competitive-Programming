@@ -1,30 +1,36 @@
-#include <iostream>
-#include <cstdio>
-#include <queue>
-#include <tuple>
+#include <bits/stdc++.h>
 
 using namespace std;
 
+long long a[100010];
+long long b[100010];
+
 int main() {
-    long long int t, n, m = 998244353, happiness = 0;
-    scanf("%lli%lli", &n, &t);
-    priority_queue<tuple<long long int, long long int, long long int, long long int>> pq;
-    for (int i = 1; i <= n; i++){
-        long long int a, b;
-        scanf("%lli%lli", &a, &b);
-        long long val = max(0, (int)(a-(0)*b));
-        pq.push(make_tuple(val, a, b, 1));
+    long long int t, n, m = 998244353;
+    cin >> n >> t;
+    for (int i = 0; i < n; i++){
+        cin >> a[i];
+        cin >> b[i];
     }
-    while (t != 0){
-        long long int val = get<0>(pq.top());
-        long long int a = get<1>(pq.top());
-        long long int b = get<2>(pq.top());
-        long long int count = get<3>(pq.top())+1;
-        pq.pop();
-        happiness += val%m;
-        val = max((long long int)0, (a-(count-1)*b));
-        pq.push(make_tuple(val, a, b, count+1));
-        t--;
+    long long lo = 0, hi = 10;
+    while (lo < hi){
+        long long mid = (lo+hi)/2;
+        long long h = 0;
+        long long count = 0;
+        for (int i = 0; i < n; i++){
+            if (a[i] > mid){
+                long long terms = floor((a[i]-mid)/b[i])+1;
+                long long lastTerm = a[i]-b[i]*(terms-1);
+                long long sum = (terms*(a[i] + lastTerm))/2;
+                h += sum%m;
+                count += terms;
+            }
+        }
+        if (count == t){
+            cout << h%m << "\n";
+            return 0;
+        }
+        else if (count > t) lo = mid+1;
+        else hi = mid;
     }
-    printf("%lli\n", happiness%m);
 }
