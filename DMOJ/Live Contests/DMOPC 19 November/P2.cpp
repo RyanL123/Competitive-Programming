@@ -42,7 +42,7 @@ int main() {
     }
     else if (k == 2){
         for (int i = 0; i < 26; i++){
-            for (int j = 0; j < 26; j++){
+            for (int j = i; j < 26; j++){
                 long long denominator = 1;
                 if (i == j){
                     denominator *= fact(charCount[j]+2);

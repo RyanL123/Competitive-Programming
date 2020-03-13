@@ -37,8 +37,6 @@ DMOPC '19 Contest 4 P2 - Pleasant Present
 
 DMOPC '19 Contest 4 P6 - little_prince's Specialty Tea House
 
-DMOPC '19 Contest 3 P2 - Generating Names
-
 CCC '96 S2 - Divisibility by 11
 
 GlobeX Cup '19 S2 - Predicting Collisions
