@@ -1,48 +1,37 @@
-#include <iostream>
-#include <cstdio>
-#include <vector>
-#include <algorithm>
-#include <climits>
-#include <cmath>
-#include <utility>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-int charCount[27];
-int charCountH[27];
-vector<string> used;
+int needle[27];
+int haystack[27];
+unordered_set<string> used;
 int main() {
     cin.sync_with_stdio(0);
     cin.tie(0);
     string n, h;
     cin >> n >> h;
-    int substrs = 0;
-    for (int i = 0; i < n.length(); i++){
-        charCount[n[i]-97]++;
+    if (n.length() > h.length()){
+        cout << 0 << endl;
+        return 0;
     }
-    int i = 0, j = n.length()-1;
-    while (j < h.length()){
-        for (int a = 0; a < 27; a++){
-            charCountH[a] = 0;
-        }
-        for (int a = i; a <= j; a++){
-            charCountH[h[a]-97]++;
-        }
+    for (int i = 0; i < n.length(); i++){
+        needle[n[i]-97]++;
+        haystack[h[i]-97]++;
+    }
+    int lPtr = 0, rPtr = n.length()-1;
+    while (rPtr < h.length()){
         bool sub = true;
         for (int a = 0; a < 27; a++){
-            if (charCount[a] != charCountH[a]){
+            if (needle[a] != haystack[a]){
                 sub = false;
                 break;
             }
         }
-        if (sub){
-            if (find(used.begin(), used.end(), h.substr(i, abs(j-i+1))) == used.end()){
-                substrs++;
-                used.push_back(h.substr(i, n.length()));
-            }
-        }
-        i++;
-        j++;
+        if (sub) used.insert( h.substr(lPtr, n.length()));
+        haystack[h[lPtr]-97]--;
+        lPtr++;
+        rPtr++;
+        if (rPtr < h.length()) haystack[h[rPtr]-97]++;
     }
-    cout << substrs << endl;
+    cout << used.size() << endl;
 }
