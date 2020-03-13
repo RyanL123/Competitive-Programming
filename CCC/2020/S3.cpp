@@ -20,28 +20,29 @@ int main() {
     for (int i = 0; i < n.length(); i++){
         charCount[n[i]-97]++;
     }
-    for (int i = 0; i < h.length(); i++){
-        for (int j = i; j < h.length(); j++){
-            for (int a = 0; a < 27; a++){
-                charCountH[a] = 0;
-            }
-            for (int a = i; a <= j; a++){
-                charCountH[h[a]-97]++;
-            }
-            bool sub = true;
-            for (int a = 0; a < 27; a++){
-                if (charCount[a] != charCountH[a]){
-                    sub = false;
-                    break;
-                }
-            }
-            if (sub){
-                if (find(used.begin(), used.end(), h.substr(i, abs(j-i+1))) == used.end()){
-                    substrs++;
-                    used.push_back(h.substr(i, abs(j-i+1)));
-                }
+    int i = 0, j = n.length()-1;
+    while (j < h.length()){
+        for (int a = 0; a < 27; a++){
+            charCountH[a] = 0;
+        }
+        for (int a = i; a <= j; a++){
+            charCountH[h[a]-97]++;
+        }
+        bool sub = true;
+        for (int a = 0; a < 27; a++){
+            if (charCount[a] != charCountH[a]){
+                sub = false;
+                break;
             }
         }
+        if (sub){
+            if (find(used.begin(), used.end(), h.substr(i, abs(j-i+1))) == used.end()){
+                substrs++;
+                used.push_back(h.substr(i, n.length()));
+            }
+        }
+        i++;
+        j++;
     }
     cout << substrs << endl;
 }
