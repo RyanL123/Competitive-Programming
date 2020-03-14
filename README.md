@@ -53,8 +53,6 @@ A Coin Problem (Online Version)
 
 Victor's Programming Exhibition P4 - Etopika
 
-CCC '00 J1 - Calendar
-
 DMOPC '19 Contest 5 P5 - Crazy Cyclic Coincidences
 
 DMOPC '19 Contest 5 P6 - Cecilia's Computational Crisis
