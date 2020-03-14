@@ -37,8 +37,6 @@ DMOPC '19 Contest 4 P6 - little_prince's Specialty Tea House
 
 CCC '96 S2 - Divisibility by 11
 
-GlobeX Cup '19 S2 - Predicting Collisions
-
 Wesley's Anger Contest 2 Problem 2 - Costume Shopping
 
 Raytracing
