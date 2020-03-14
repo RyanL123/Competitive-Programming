@@ -4,7 +4,7 @@ using namespace std;
 
 int needle[27];
 int haystack[27];
-unordered_set<string> used;
+unordered_set<long long> used;
 int main() {
     cin.sync_with_stdio(0);
     cin.tie(0);
@@ -18,6 +18,7 @@ int main() {
         needle[n[i]-97]++;
         haystack[h[i]-97]++;
     }
+    hash<string> rhash;
     int lPtr = 0, rPtr = n.length()-1;
     while (rPtr < h.length()){
         bool sub = true;
@@ -27,7 +28,7 @@ int main() {
                 break;
             }
         }
-        if (sub) used.insert( h.substr(lPtr, n.length()));
+        if (sub) used.insert(rhash(h.substr(lPtr, n.length())));
         haystack[h[lPtr]-97]--;
         lPtr++;
         rPtr++;
