@@ -52,3 +52,7 @@ Victor's Programming Exhibition P4 - Etopika
 DMOPC '19 Contest 5 P5 - Crazy Cyclic Coincidences
 
 DMOPC '19 Contest 5 P6 - Cecilia's Computational Crisis
+
+PIB '20 P2 - 2 + 2 = 5
+
+PIB '20 P3 - Rulebreaker
