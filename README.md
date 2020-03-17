@@ -1,17 +1,13 @@
 # Competitive-Programming-Cpp
-- Practice for competitive programming (mainly consists of CCC problems)
+Practice for competitive programming on various platforms. 
+Most code not commented nor optimized but good enough to AC.
 
-- All code written in C++
+DMOJ problems have the same name as their respective DMOJ URL
 
-- Most code not commented nor optimized but good enough to AC
-
-Some problems have the same name as their respective DMOJ URL
-
-For example: 
-
+For example:
 > dmoj.ca/problem/**dmopc15c3p4**
 
-[DMOJ Profile](https://dmoj.ca/user/RyanLi)
+[DMOJ Profile](https://dmoj.ca/user/RyanLi) | [Codeforces Profile](http://codeforces.com/profile/RyanLi)
 
 ## Achievements
 

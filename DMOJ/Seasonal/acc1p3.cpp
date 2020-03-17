@@ -23,21 +23,21 @@ int main() {
         cin >> b[i];
     }
     ull lo = 0, hi = 1e19;
-    while (lo <= hi){
+    while (lo < hi){
         ull mid = (lo+hi)/2;
-        __int128 h = 0;
+        ull h = 0;
         ull count = 0;
         for (int i = 0; i < n; i++){
             if (a[i] >= mid){
-                __int128 terms = floor((a[i]-mid)/b[i])+1;
-                __int128 lastTerm = a[i]-b[i]*(terms-1);
-                __int128 sum = (terms*(a[i] + lastTerm))/2;
+                ull terms = floor((a[i]-mid)/b[i])+1;
+                ull lastTerm = a[i]-b[i]*(terms-1);
+                ull sum = (terms*(a[i] + lastTerm))/2;
                 h += sum%m;
                 count += terms;
             }
         }
         if (count == t || lo == hi){
-            cout << (ull)(h%m) << "\n";
+            cout << h%m << "\n";
             return 0;
         }
         else if (count > t) lo = mid+1;
