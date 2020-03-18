@@ -12,7 +12,7 @@ using namespace std;
 
 long long room[1010][1010];
 bool visited[1010][1010];
-bool usedX[100000];
+bool usedX[1000010];
 int main() {
     cin.sync_with_stdio(0);
     cin.tie(0);
