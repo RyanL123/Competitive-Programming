@@ -15,44 +15,44 @@ CCC 2019 Junior: 60
 
 CCC 2020 Senior: 37
 
-## Incomplete problems (In no particular order)
+## Incomplete problems
 
-Longest Increasing Subsequence
+5pt MWC '15 #2 P4: Robotics Summative
 
-Another Contest 1 Problem 3 - Poutine
+5pt PIB '20 P2 - 2 + 2 = 5
 
-MWC '15 #2 P4: Robotics Summative
+7pt PIB '20 P3 - Rulebreaker
 
-Back From Summer '19 P3: ASDFGHJKL
+7pt CCC '96 S2 - Divisibility by 11
 
-PalinDrone
+7pt Longest Increasing Subsequence
 
-DMOPC '19 Contest 4 P2 - Pleasant Present
+10pt Another Contest 1 Problem 3 - Poutine
 
-DMOPC '19 Contest 4 P6 - little_prince's Specialty Tea House
+10pt Back From Summer '19 P3: ASDFGHJKL
 
-CCC '96 S2 - Divisibility by 11
+10pt DMOPC '19 Contest 4 P2 - Pleasant Present
 
-Wesley's Anger Contest 2 Problem 2 - Costume Shopping
+10pt Wesley's Anger Contest 2 Problem 2 - Costume Shopping
 
-Raytracing
+10pt CCC '20 S3 - Searching for Strings
 
-Athena on Zanzibar Island
+12pt PalinDrone
 
-Coins
+12pt Athena on Zanzibar Island
 
-CCC '20 S3 - Searching for Strings
+12pt Victor's Programming Exhibition P4 - Etopika
 
-Fast Factorial Calculator 2
+15pt Raytracing
 
-A Coin Problem (Online Version)
+15pt PIB '20 P7 - Karnaugh Maps
 
-Victor's Programming Exhibition P4 - Etopika
+15pt A Coin Problem (Online Version)
 
-DMOPC '19 Contest 5 P5 - Crazy Cyclic Coincidences
+17pt DMOPC '19 Contest 5 P5 - Crazy Cyclic Coincidences
 
-DMOPC '19 Contest 5 P6 - Cecilia's Computational Crisis
+20pt DMOPC '19 Contest 5 P6 - Cecilia's Computational Crisis
 
-PIB '20 P2 - 2 + 2 = 5
+25pt DMOPC '19 Contest 4 P6 - little_prince's Specialty Tea House
 
-PIB '20 P3 - Rulebreaker
+25pt Fast Factorial Calculator 2
