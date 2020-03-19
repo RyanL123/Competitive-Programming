@@ -32,13 +32,11 @@ int main() {
             lo = m;
         }
     }
-    while (true){
-        if (floor((result+1)/2)-floor((result+1)/7) <= t) {
-            result++;
-        }
-        else {
-            break;
+    ull ans = result;
+    for (int i = 1; i <= 20; i++){
+        if (floor((result+i)/2)-floor((result+i)/7) <= t) {
+            ans = result + i;
         }
     }
-    cout << result;
+    cout << ans;
 }
