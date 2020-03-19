@@ -43,19 +43,8 @@ int main() {
         cin >> m;
         hotel[m] = true;
     }
-    int first = -1;
-    for (int i = 0; i <= b; i++){
-        if (hotel[i]){
-            dp[i] = 1;
-            first = i;
-            break;
-        }
-    }
-    if (first == -1){
-        cout << 0 << endl;
-        return 0;
-    }
-    for (int i = first; i <= 7000; i++){
+    dp[0] = 1;
+    for (int i = 0; i <= 7000; i++){
         ll ans = 0;
         if (hotel[i]){
             for (int j = max(0,i-b); j <= max(0,i-a); j++){
