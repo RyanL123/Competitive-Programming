@@ -10,8 +10,7 @@ typedef unsigned long long ull;
 #define inf 0x3f3f3f3f
 
 int main() {
-    cin.sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
 }
