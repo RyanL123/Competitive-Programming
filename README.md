@@ -19,8 +19,6 @@ CCC 2020 Senior: 37
 
 5pt MWC '15 #2 P4: Robotics Summative
 
-5pt PIB '20 P2 - 2 + 2 = 5
-
 7pt PIB '20 P3 - Rulebreaker
 
 7pt CCC '96 S2 - Divisibility by 11
