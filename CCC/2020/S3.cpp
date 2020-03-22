@@ -1,38 +1,52 @@
 #include <bits/stdc++.h>
-
 using namespace std;
+typedef pair<int, int> pii;
+typedef vector<pair<int, int>> vii;
+typedef vector<int> vi;
+typedef long long ll;
+typedef unsigned long long ull;
+#define pb(x) push_back(x)
+#define mp(a, b) make_pair(a, b)
+#define inf 0x3f3f3f3f
 
-int needle[27];
-int haystack[27];
-unordered_set<long long> used;
+ll hsh[200010], pw[200010], base = 131;
+int fs[26], ft[26];
+unordered_set<ll> st;
+
+bool check(){
+    for (int i = 0; i < 26; i++){
+        if (fs[i] != ft[i]) return false;
+    }
+    return true;
+}
+
+ll getSubHash(int l, int r){
+    return hsh[r] - hsh[l-1]*pw[r-l+1];
+}
+
 int main() {
-    cin.sync_with_stdio(0);
-    cin.tie(0);
-    string n, h;
-    cin >> n >> h;
-    if (n.length() > h.length()){
-        cout << 0 << endl;
-        return 0;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    string s, t;
+    cin >> s >> t;
+    int n = s.length(), m = t.length();
+    for (int i = 1; i <= n; i++){
+        fs[s[i-1]-'a']++;
     }
-    for (int i = 0; i < n.length(); i++){
-        needle[n[i]-97]++;
-        haystack[h[i]-97]++;
+    pw[0] = 1;
+    // Generate hash which can be calculated with sliding window
+    // Kind of like prefix sum array
+    for (int i = 1; i <= m; i++){
+        hsh[i] = hsh[i-1]*base + t[i-1];
+        pw[i] = pw[i-1]*base;
     }
-    hash<string> rhash;
-    int lPtr = 0, rPtr = n.length()-1;
-    while (rPtr < h.length()){
-        bool sub = true;
-        for (int a = 0; a < 27; a++){
-            if (needle[a] != haystack[a]){
-                sub = false;
-                break;
-            }
-        }
-        if (sub) used.insert(rhash(h.substr(lPtr, n.length())));
-        haystack[h[lPtr]-97]--;
-        lPtr++;
-        rPtr++;
-        if (rPtr < h.length()) haystack[h[rPtr]-97]++;
+    for (int i = 1; i <= m; i++){
+        // Sliding window
+        ft[t[i-1]-'a']++;
+        if (i < n) continue;
+        if (i > n) ft[t[i-n-1]-'a']--;
+        // Rolling hash
+        if (check()) st.insert(getSubHash(i-n+1, i));
     }
-    cout << used.size() << endl;
+    cout << st.size() << endl;
 }
