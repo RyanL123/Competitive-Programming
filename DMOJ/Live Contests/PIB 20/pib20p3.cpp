@@ -10,37 +10,39 @@ typedef unsigned long long ull;
 #define mp(a, b) make_pair(a, b)
 #define inf 0x3f3f3f3f
 
-vi graph[100010];
-
-int dfs(int node, int nodes){
-    if (graph[node].empty()) return nodes;
-    return dfs(graph[node][0], nodes+1);
-}
+int cnt[100010];
 
 int main() {
     cin.sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    int Q;
+    int Q, q, prev = 0;
     cin >> Q;
-    int prev = -1;
-    for (int i = 1; i <= Q; i++){
-        int q;
+    while (Q--){
         cin >> q;
         if (q == 1){
-            prev = i;
+            prev++;
+            cnt[prev]++;
         }
         else if (q == 2){
-            graph[prev].pb(i);
-            prev = i;
+            cnt[prev]++;
         }
-        else if (q == 3){
+        else {
             int x;
             cin >> x;
-            if (dfs(x, 0)%2 == 1){
-                cout << 0 << "\n";
+            int total = 0, i = 0;
+            for (i = 0; i <= x; i++){
+                if (total + cnt[i] > x){
+                    break;
+                }
+                total += cnt[i];
             }
-            else cout << 1 << "\n";
+            if (total == x) cout << "1\n";
+            else {
+                int ans = total + cnt[i] - x;
+                if (ans % 2 == 0) cout << "1\n";
+                else cout << "0\n";
+            }
         }
     }
 }
