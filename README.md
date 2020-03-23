@@ -31,8 +31,6 @@ CCC 2020 Senior: 37
 
 10pt Wesley's Anger Contest 2 Problem 2 - Costume Shopping
 
-10pt CCC '20 S3 - Searching for Strings
-
 12pt PalinDrone
 
 12pt Athena on Zanzibar Island
