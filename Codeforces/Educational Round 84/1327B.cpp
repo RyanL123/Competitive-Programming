@@ -11,7 +11,6 @@ typedef unsigned long long ull;
 #define inf 0x3f3f3f3f
 
 bool taken[100010];
-vi noMatch;
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -21,10 +20,10 @@ int main() {
     while (t--){
         int n, cnt = 0;
         cin >> n;
-        for (int i = 0; i <= 100000; i++){
+        for (int i = 0; i <= n; i++){
             taken[i] = false;
         }
-        noMatch.clear();
+        int noMatch;
         for (int i = 1; i <= n; i++){
             int k, g;
             bool flag = false;
@@ -37,25 +36,17 @@ int main() {
                     cnt++;
                 }
             }
-            if (!flag) noMatch.pb(i);
+            if (!flag) noMatch = i;
         }
         if (cnt == n) cout << "OPTIMAL\n";
         else {
-            bool improve = false;
-            int last = 1;
-            for (int i = 0; i < noMatch.size(); i++){
-                if (improve) break;
-                for (; last <= n; last++){
-                    if (!taken[last]){
-                        if (!improve) cout << "IMPROVE\n";
-                        taken[last] = true;
-                        cout << noMatch[i] << " " << last << "\n";
-                        improve = true;
-                        break;
-                    }
+            cout << "IMPROVE\n";
+            for (int i = 1; i <= n; i++){
+                if (!taken[i]){
+                    cout << noMatch << " " << i << "\n";
+                    break;
                 }
             }
-            if (!improve) cout << "OPTIMAL\n";
         }
     }
 }
