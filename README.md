@@ -1,4 +1,4 @@
-# Competitive-Programming-Cpp
+# Competitive-Programming
 Practice for competitive programming on various platforms. 
 Most code not commented nor optimized but good enough to AC.
 
@@ -42,6 +42,8 @@ CCC 2020 Senior: 37
 15pt PIB '20 P7 - Karnaugh Maps
 
 15pt A Coin Problem (Online Version)
+
+15pt DMOPC '14 Contest 2 P6 - Selective Cutting
 
 17pt DMOPC '19 Contest 5 P5 - Crazy Cyclic Coincidences
 
