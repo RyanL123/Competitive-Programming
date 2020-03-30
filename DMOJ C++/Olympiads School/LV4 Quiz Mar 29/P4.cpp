@@ -34,7 +34,7 @@ int main() {
                     dp[i] = max(dp[i], dp[s-r]+v);
                 }
                 else {
-                    dp[i] = v;
+                    dp[i] = max(dp[i], (ll)v);
                 }
             }
         }
