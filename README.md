@@ -27,8 +27,6 @@ CCC 2020 Senior: 37
 
 10pt Back From Summer '19 P3: ASDFGHJKL
 
-10pt DMOPC '19 Contest 4 P2 - Pleasant Present
-
 10pt Wesley's Anger Contest 2 Problem 2 - Costume Shopping
 
 12pt PalinDrone
@@ -42,6 +40,8 @@ CCC 2020 Senior: 37
 15pt PIB '20 P7 - Karnaugh Maps
 
 15pt A Coin Problem (Online Version)
+
+15pt Lexicographically Least Substring (Hard)
 
 15pt DMOPC '14 Contest 2 P6 - Selective Cutting
 
