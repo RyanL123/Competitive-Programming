@@ -10,10 +10,17 @@ typedef unsigned long long ull;
 #define mp(a, b) make_pair(a, b)
 #define inf INT_MAX
 
-ll stones[200010], dp[200010];
+ll h[200010], dp[200010];
 
-ll calc(ll x, ll y, ll c){
-    return (x-y)*(x-y) + c;
+struct line{
+    ll m, b;
+    ll eval(ll x){
+        return m*x+b;
+    }
+};
+
+ll intX(line u, line v){
+    return (u.b-v.b)/(v.m-u.m);
 }
 
 int main() {
@@ -23,16 +30,23 @@ int main() {
     ll n, c;
     cin >> n >> c;
     for (int i = 1; i <= n; i++){
-        cin >> stones[i];
+        cin >> h[i];
     }
-    // No convex hull optimization
+    deque<line> dq;
+    dq.push_back({-2*h[1],dp[1]+h[1]*h[1]});
     for (int i = 2; i <= n; i++){
-        ll minCost = LONG_LONG_MAX;
-        for (int j = 1; j < i; j++){
-            ll cost = dp[j] + calc(stones[i], stones[j], c);
-            minCost = min(cost, minCost);
+        while (dq.size() >= 2 && dq[1].eval(h[i]) < dq[0].eval(h[i])){
+            dq.pop_front();
         }
-        dp[i] = minCost;
+        dp[i] = dq[0].eval(h[i]) + c + h[i] * h[i];
+        line cur = {
+                -2*h[i],
+                dp[i]+h[i]*h[i]
+        };
+        while (dq.size() >= 2 && intX(cur, dq[dq.size()-2]) < intX(dq[dq.size()-1], dq[dq.size()-2])){
+            dq.pop_back();
+        }
+        dq.push_back(cur);
     }
     cout << dp[n];
 }
