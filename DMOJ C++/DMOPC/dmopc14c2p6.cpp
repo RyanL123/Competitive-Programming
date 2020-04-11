@@ -12,18 +12,8 @@ typedef unsigned long long ull;
 
 const int MAXN = 1e5+10;
 vector<tuple<int, int, int, int>> queries;
-int A[MAXN], B[MAXN];
+int B[MAXN];
 ll t[4*MAXN], ans[MAXN];
-
-void build(int node, int l, int r){
-    if (l == r) t[node] = B[l];
-    else {
-        int m = (l+r)/2;
-        build(node*2, l, m);
-        build(node*2+1, m+1, r);
-        t[node] = t[node*2] + t[node*2+1];
-    }
-}
 
 void update(int node, int tl, int tr, int x, int v){
     if (tl == tr) t[node] = v;
@@ -47,8 +37,11 @@ int main() {
     cin.tie(NULL);
     int n, q;
     cin >> n;
+    map<int, int> M;
     for (int i = 0; i < n; i++){
-        cin >> A[i];
+        int x;
+        cin >> x;
+        M[i] = x;
     }
     cin >> q;
     for (int i = 0; i < q; i++){
@@ -57,30 +50,26 @@ int main() {
         queries.pb(make_tuple(m, a, b, i));
     }
     sort(queries.begin(), queries.end());
-    int prev = get<0>(queries[q-1]);
-    for (int i = 0; i < n; i++){
-        if (A[i] >= prev) B[i] = A[i];
-    }
-    build(1, 0, n-1);
+    int prev = -1;
     for (int i = q-1; i >= 0; i--){
         int m = get<0>(queries[i]);
-        if (m == prev){
-            int a = get<1>(queries[i]);
-            int b = get<2>(queries[i]);
-            ans[get<3>(queries[i])] = query(1, a, b, 0, n-1);
-        }
-        else {
-            for (int j = 0; j < n; j++){
-                if (A[j] >= m) B[j] = A[j];
+        // Add new trees with height >= m
+        if (m != prev){
+            vi del;
+            for (pii p : M){
+                if (p.second >= m){
+                    update(1, 0, n-1, p.first, p.second);
+                    del.pb(p.first);
+                }
             }
-            build(1, 0, n-1);
-            int a = get<1>(queries[i]);
-            int b = get<2>(queries[i]);
-            ans[get<3>(queries[i])] = query(1, a, b, 0, n-1);
+            for (int j : del) M.erase(j);
         }
+        int a = get<1>(queries[i]);
+        int b = get<2>(queries[i]);
+        ans[get<3>(queries[i])] = query(1, a, b, 0, n-1);
         prev = m;
     }
     for (int i = 0; i < q; i++){
-        cout << ans[i] << endl;
+        cout << ans[i] << "\n";
     }
 }
