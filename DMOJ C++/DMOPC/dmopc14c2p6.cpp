@@ -12,7 +12,6 @@ typedef unsigned long long ull;
 
 const int MAXN = 1e5+10;
 vector<tuple<int, int, int, int>> queries;
-int B[MAXN];
 ll t[4*MAXN], ans[MAXN];
 
 void update(int node, int tl, int tr, int x, int v){
@@ -37,11 +36,11 @@ int main() {
     cin.tie(NULL);
     int n, q;
     cin >> n;
-    map<int, int> M;
+    vii A;
     for (int i = 0; i < n; i++){
         int x;
         cin >> x;
-        M[i] = x;
+        A.pb(mp(x, i));
     }
     cin >> q;
     for (int i = 0; i < q; i++){
@@ -49,20 +48,17 @@ int main() {
         cin >> a >> b >> m;
         queries.pb(make_tuple(m, a, b, i));
     }
+    sort(A.begin(), A.end());
     sort(queries.begin(), queries.end());
     int prev = -1;
-    for (int i = q-1; i >= 0; i--){
+    for (int i = q-1, j = n-1; i >= 0; i--){
         int m = get<0>(queries[i]);
         // Add new trees with height >= m
         if (m != prev){
-            vi del;
-            for (pii p : M){
-                if (p.second >= m){
-                    update(1, 0, n-1, p.first, p.second);
-                    del.pb(p.first);
-                }
+            while (A[j].first >= m && j >= 0){
+                update(1, 0, n-1, A[j].second, A[j].first);
+                j--;
             }
-            for (int j : del) M.erase(j);
         }
         int a = get<1>(queries[i]);
         int b = get<2>(queries[i]);

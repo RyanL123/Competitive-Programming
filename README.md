@@ -43,8 +43,6 @@ CCC 2020 Senior: 37
 
 15pt Lexicographically Least Substring (Hard)
 
-15pt DMOPC '14 Contest 2 P6 - Selective Cutting
-
 17pt DMOPC '19 Contest 5 P5 - Crazy Cyclic Coincidences
 
 20pt DMOPC '19 Contest 5 P6 - Cecilia's Computational Crisis
