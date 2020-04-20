@@ -3,6 +3,7 @@ using namespace std;
 typedef pair<int, int> pii;
 typedef vector<pair<int, int>> vii;
 typedef vector<int> vi;
+typedef long double ld;
 typedef long long ll;
 typedef unsigned long long ull;
 #define pb(x) push_back(x)
