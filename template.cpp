@@ -8,6 +8,7 @@ typedef long long ll;
 typedef unsigned long long ull;
 #define pb(x) push_back(x)
 #define mp(a, b) make_pair(a, b)
+#define srt(x) sort(x.begin(), x.end())
 #define inf 0x3f3f3f3f
 
 int main() {
