@@ -10,32 +10,54 @@ typedef unsigned long long ull;
 #define mp(a, b) make_pair(a, b)
 #define inf 0x3f3f3f3f
 
-int J[1000005], L[1000005], dp[2][1000005];
+int A[1000005], B[1000005], C[1000005], ind[1000005];
+
+int s(int l, int r, int v){
+    while (l < r){
+        int m = (l+r)/2;
+        if (ind[m] >= v) r = m;
+        else l = m+1;
+    }
+    return r;
+}
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int a, b;
     cin >> a;
-    for (int i = 0; i < a; i++) cin >> J[i];
-    cin >> b;
-    for (int i = 0; i < b; i++) cin >> L[i];
     for (int i = 1; i <= a; i++){
-        for (int j = 1; j <= b; j++){
-            if (i % 2 == 1){
-                dp[0][j] = max(dp[1][j], dp[0][j-1]);
-                if (J[i-1] == L[j-1]) dp[0][j] = max(dp[0][j], dp[1][j-1]+1);
-            }
-            else {
-                dp[1][j] = max(dp[0][j], dp[1][j-1]);
-                if (J[i-1] == L[j-1]) dp[1][j] = max(dp[1][j], dp[0][j-1]+1);
-            }
+        int x;
+        cin >> x;
+        A[x] = i;
+    }
+    cin >> b;
+    for (int i = 1; i <= b; i++){
+        cin >> B[i];
+        C[i] = A[B[i]];
+    }
+    int len = 1;
+    for (int i = 1; i <= b; i++){
+        if (C[i] != 0){
+            ind[1] = C[i];
+            break;
         }
     }
-    if (a % 2 == 0){
-        cout << dp[1][b];
+    if (ind[1] == 0){
+        cout << 0;
+        return 0;
     }
-    else {
-        cout << dp[0][b];
+    for (int i = 1; i <= b; i++){
+        if (C[i] <= ind[1] && C[i] != 0){
+            ind[1] = C[i];
+        }
+        else if (C[i] > ind[len]){
+            len++;
+            ind[len] = C[i];
+        }
+        else{
+            ind[s(0, len, C[i])] = C[i];
+        }
     }
+    cout << len;
 }

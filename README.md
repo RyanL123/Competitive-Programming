@@ -45,8 +45,6 @@ CCC 2020 Senior: 37
 
 15pt DMOPC '19 Contest 6 P4 - Grade 12 Math
 
-15pt VM7WC '16 #2 Gold - GGG
-
 15pt Another Contest 1 Problem 2 - Graphs
 
 17pt DMOPC '19 Contest 5 P5 - Crazy Cyclic Coincidences
