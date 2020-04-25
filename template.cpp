@@ -6,8 +6,8 @@ typedef vector<int> vi;
 typedef long double ld;
 typedef long long ll;
 typedef unsigned long long ull;
-#define pb(x) push_back(x)
-#define mp(a, b) make_pair(a, b)
+#define pb push_back
+#define mp make_pair
 #define srt(x) sort(x.begin(), x.end())
 #define inf 0x3f3f3f3f
 
