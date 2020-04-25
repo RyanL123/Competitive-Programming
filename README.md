@@ -25,8 +25,6 @@ CCC 2020 Senior: 37
 
 10pt Wesley's Anger Contest 2 Problem 2 - Costume Shopping
 
-12pt PalinDrone
-
 12pt Athena on Zanzibar Island
 
 12pt Victor's Programming Exhibition P4 - Etopika
