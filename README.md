@@ -19,8 +19,6 @@ CCC 2020 Senior: 37
 
 5pt MWC '15 #2 P4: Robotics Summative
 
-7pt CCC '96 S2 - Divisibility by 11
-
 10pt Another Contest 1 Problem 3 - Poutine
 
 10pt Back From Summer '19 P3: ASDFGHJKL
