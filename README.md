@@ -50,3 +50,7 @@ CCC 2020 Senior: 37
 25pt DMOPC '19 Contest 4 P6 - little_prince's Specialty Tea House
 
 25pt Fast Factorial Calculator 2
+
+25pt Wesley's Anger Contest 4 Problem 7 - Squirrel Cities
+
+35pt Wesley's Anger Contest 4 Problem 4 - The Almighty Acorn
