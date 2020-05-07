@@ -25,6 +25,10 @@ CCC 2020 Senior: 37
 
 10pt Wesley's Anger Contest 2 Problem 2 - Costume Shopping
 
+10pt DMOPC '19 Contest 7 P2 - Dinner Party
+
+12pt DMOPC '19 Contest 7 P3 - Tree Pruning
+
 12pt Athena on Zanzibar Island
 
 12pt Victor's Programming Exhibition P4 - Etopika
@@ -47,6 +51,8 @@ CCC 2020 Senior: 37
 
 20pt DMOPC '19 Contest 5 P6 - Cecilia's Computational Crisis
 
+20pt DMOPC '19 Contest 7 P5 - Soriya's Programming Project
+
 25pt DMOPC '19 Contest 4 P6 - little_prince's Specialty Tea House
 
 25pt Fast Factorial Calculator 2
@@ -54,3 +60,5 @@ CCC 2020 Senior: 37
 25pt Wesley's Anger Contest 4 Problem 7 - Squirrel Cities
 
 35pt Wesley's Anger Contest 4 Problem 4 - The Almighty Acorn
+
+35pt DMOPC '19 Contest 7 P7 - Fluid Dynamics
