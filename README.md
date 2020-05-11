@@ -25,10 +25,6 @@ CCC 2020 Senior: 37
 
 10pt Wesley's Anger Contest 2 Problem 2 - Costume Shopping
 
-10pt DMOPC '19 Contest 7 P2 - Dinner Party
-
-12pt DMOPC '19 Contest 7 P3 - Tree Pruning
-
 12pt Athena on Zanzibar Island
 
 12pt Victor's Programming Exhibition P4 - Etopika
