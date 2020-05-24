@@ -6,6 +6,7 @@ typedef vector<int> vi;
 typedef long double ld;
 typedef long long ll;
 typedef unsigned long long ull;
+#define eb emplace_back
 #define pb push_back
 #define mp make_pair
 #define srt(x) sort(x.begin(), x.end())
