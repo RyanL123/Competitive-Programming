@@ -41,6 +41,8 @@ CCC 2020 Senior: 37
 
 15pt Another Contest 1 Problem 2 - Graphs
 
+15pt DMOPC '14 Contest 5 P6 - Save Nagato!
+
 17pt DMOPC '19 Contest 5 P5 - Crazy Cyclic Coincidences
 
 20pt DMOPC '19 Contest 5 P6 - Cecilia's Computational Crisis
