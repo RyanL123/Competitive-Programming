@@ -10,6 +10,7 @@ typedef unsigned long long ull;
 #define pb push_back
 #define mp make_pair
 #define srt(x) sort(x.begin(), x.end())
+#define all(x) x.begin(), x.end()
 #define inf 0x3f3f3f3f
 
 int main() {
