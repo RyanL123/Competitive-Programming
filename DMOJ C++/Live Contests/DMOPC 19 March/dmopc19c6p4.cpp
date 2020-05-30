@@ -1,114 +1,93 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 typedef pair<int, int> pii;
 typedef vector<pair<int, int>> vii;
 typedef vector<int> vi;
+typedef long double ld;
 typedef long long ll;
 typedef unsigned long long ull;
-#define pb(x) push_back(x)
-#define mp(a, b) make_pair(a, b)
+#define eb emplace_back
+#define pb push_back
+#define mp make_pair
+#define srt(x) sort(x.begin(), x.end())
+#define all(x) x.begin(), x.end()
 #define inf 0x3f3f3f3f
 
-map<int, int> t[2000000];
+const int MM = 5e5+5;
+map<int, int> seg[4*MM];
+int a[MM];
 
-void combine(int n){
-    map<int, int> l = t[n*2];
-    map<int, int> r = t[n*2+1];
-    map<int, int> m = l;
-    for (pii v : r){
-        if (m[v.first] == 0) m[v.first] = v.second;
-        else m[v.first] += v.second;
+void merge(int n){
+    map<int, int> m;
+    for (pii p : seg[n*2]){
+        m[p.first] += p.second;
     }
-    t[n] = m;
+    for (pii p : seg[n*2+1]){
+        m[p.first] += p.second;
+    }
+    seg[n] = m;
 }
 
 void build(int n, int l, int r){
+    if (l > r) return;
     if (l == r){
-        t[n][0] = 1;
+        seg[n][0] = 1;
     }
     else {
         int m = (l+r)/2;
         build(n*2, l, m);
-        build (n*2+1, m+1, r);
-        combine(n);
+        build(n*2+1, m+1, r);
+        merge(n);
     }
 }
 
-void increment(int n, int l, int r, int pos){
+void upd(int n, int l, int r, int pos, int val){
     if (l > r) return;
     if (l == r){
-        int erase = 0;
-        for (pii p : t[n]){
-            t[n][p.first+1] = 1;
-            erase = p.first;
-            break;
-        }
-        t[n].erase(erase);
+        seg[n][a[pos]]--;
+        if (seg[n][a[pos]] == 0) seg[n].erase(a[pos]);
+        seg[n][a[pos]+val]++;
+        return;
     }
-    else {
-        int m = (l+r)/2;
-        if (pos <= m) increment(n*2, l, m, pos);
-        else increment(n*2+1, m+1, r, pos);
-        combine(n);
-    }
+    int m = (l+r)/2;
+    if (pos <= m) upd(n*2, l, m, pos, val);
+    else upd(n*2+1, m+1, r, pos, val);
+    merge(n);
 }
 
-void decrement(int n, int l, int r, int pos){
-    if (l > r) return;
-    if (l == r){
-        int erase = 0;
-        for (pii p : t[n]){
-            t[n][p.first-1] = 1;
-            erase = p.first;
-            break;
-        }
-        t[n].erase(erase);
-    }
-    else {
-        int m = (l+r)/2;
-        if (pos <= m) decrement(n*2, l, m, pos);
-        else decrement(n*2+1, m+1, r, pos);
-        combine(n);
-    }
-}
-
-ll query(int n, int l, int r, int tl, int tr, int v){
+int qry(int n, int l, int r, int tl, int tr, int val){
     if (l > r) return 0;
-    if (l == tl && r == tr){
-        return t[n][v];
+    if (tl == l && tr == r){
+        return seg[n][val];
     }
-    else {
-        int m = (tl+tr)/2;
-        ll left = query(n*2, l, min(r, m), tl, m, v);
-        ll right = query(n*2+1, max(m+1, l), r, m+1, tr, v);
-        return left+right;
-    }
+    int m = (tl+tr)/2;
+    int left = qry(n*2, l, min(r, m), tl, m, val);
+    int right = qry(n*2+1, max(m+1, l), r, m+1, tr, val);
+    return left+right;
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int n, q;
-    cin >> n >> q;
-    build(1, 0, n-1);
-    for (int i = 0; i < q; i++){
-        int Q;
-        cin >> Q;
-        if (Q == 1){
-            int x;
+    int N, Q;
+    cin >> N >> Q;
+    build(1, 0, N-1);
+    while (Q--){
+        int q, x, l, r, c;
+        cin >> q;
+        if (q == 1){
             cin >> x;
-            increment(1, 0, n-1, x-1);
+            upd(1, 0, N-1, x-1, 1);
+            a[x-1]++;
         }
-        else if (Q == 2){
-            int x;
+        else if (q == 2){
             cin >> x;
-            decrement(1, 0, n-1, x-1);
+            upd(1, 0, N-1, x-1, -1);
+            a[x-1]--;
         }
         else {
-            int l, r, x;
-            cin >> l >> r >> x;
-            cout << query(1, l-1, r-1, 0, n-1, x) << "\n";
+            cin >> l >> r >> c;
+            cout << qry(1, l-1, r-1, 0, N-1, c) << '\n';
         }
     }
 }
