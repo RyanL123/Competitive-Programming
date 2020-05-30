@@ -23,8 +23,6 @@ CCC 2020 Senior: 37
 
 10pt Back From Summer '19 P3: ASDFGHJKL
 
-10pt Wesley's Anger Contest 2 Problem 2 - Costume Shopping
-
 12pt Athena on Zanzibar Island
 
 12pt Bob's Challenge
