@@ -29,8 +29,6 @@ CCC 2020 Senior: 37
 
 12pt Bob's Challenge
 
-15pt Raytracing
-
 15pt PIB '20 P7 - Karnaugh Maps
 
 15pt A Coin Problem (Online Version)
