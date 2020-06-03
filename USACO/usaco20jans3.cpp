@@ -15,22 +15,40 @@ typedef unsigned long long ull;
 #define inf 0x3f3f3f3f
 
 const int MM = 1e5+5;
-int a[MM];
+int n, m, a[MM];
 vii adj[MM];
-bool vis[MM];
+int vis[MM];
 
-// TODO
-// check if every cow is in the same connected component as where they are supposed to be
-bool solve(int val){
-    memset(vis, false, sizeof(vis));
+void bfs(int v, int val, int id){
     queue<int> q;
+    q.push(v);
+    vis[v] = id;
+    while (!q.empty()){
+        int w = q.front();
+        q.pop();
+        for (pii u : adj[w]){
+            if (vis[u.first] == -1 && u.second >= val){
+                vis[u.first] = id;
+                q.push(u.first);
+            }
+        }
+    }
+}
 
+bool solve(int val){
+    memset(vis, -1, sizeof(vis));
+    for (int i = 1; i <= n; i++){
+        if (vis[i] == -1) bfs(i, val, i);
+    }
+    for (int i = 1; i <= n; i++){
+        if (vis[a[i]] != vis[i]) return false;
+    }
+    return true;
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int n, m;
     cin >> n >> m;
     bool done = true;
     for (int i = 1; i <= n; i++){
@@ -47,11 +65,11 @@ int main() {
         adj[A].eb(B, w);
         adj[B].eb(A, w);
     }
-    int lo = 0, hi = MM;
-    while (lo < hi){
+    int lo = 0, hi = 1e9;
+    while (lo <= hi){
         int mid = (lo+hi)/2;
         if (solve(mid)) lo = mid+1;
-        else hi = mid;
+        else hi = mid-1;
     }
     cout << hi << '\n';
 }
