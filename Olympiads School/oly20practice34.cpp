@@ -9,21 +9,22 @@ typedef unsigned long long ull;
 #define mp(a, b) make_pair(a, b)
 #define inf 0x3f3f3f3f
 
-const int MOD = 1e9+7;
-
-int solve(int n, int k){
-	if (n == 0 || k == 0) return 1;
-	if (k < 0) return 0;
-	if (n >= pow(2, k)){
-		return (solve(n-pow(2,k), k)%MOD + solve(n, k-1)%MOD)%MOD;
-	}
-	return solve(n, k-1)%MOD;
-}
+const int MOD = 1e9+7, MM = 1e6+5;
+int dp[MM];
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int n;
     cin >> n;
-    cout << solve(n, floor(log2((double)n)));
+    dp[0] = 1;
+    // All powers of 2 <= n
+    for (int i = 0; (1<<i) <= n; i++){
+        // Add to the current number num of ways to make the
+        // number without the current power of 2
+        for (int j = (1<<i); j <= n; j++){
+            dp[j] = (dp[j-(1<<i)] + dp[j])%MOD;
+        }
+    }
+    cout << dp[n] << "\n";
 }
