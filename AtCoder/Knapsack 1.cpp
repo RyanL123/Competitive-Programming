@@ -1,62 +1,33 @@
-#include <iostream>
-#include <vector>
-
+#include <bits/stdc++.h>
 using namespace std;
+typedef pair<int, int> pii;
+typedef vector<pair<int, int>> vii;
+typedef vector<int> vi;
+typedef long double ld;
+typedef long long ll;
+typedef unsigned long long ull;
+#define eb emplace_back
+#define pb push_back
+#define mp make_pair
+#define srt(x) sort(x.begin(), x.end())
+#define all(x) x.begin(), x.end()
+#define inf 0x3f3f3f3f
 
-long dp[2][100010];
+const int MM = 1e5+5;
+int pre = 0, cur = 1, N, W; ll dp[2][MM];
+
 int main() {
-    int n, w;
-    cin >> n >> w;
-
-    // Get objects
-    int objWeight[101];
-    int objVal[101];
-    for (int i = 0; i < n; i++){
-        cin >> objWeight[i];
-        cin >> objVal[i];
-    }
-
-    //DP
-    for (int i = 1; i <= n; i++){
-        for (int j = 1; j <= w; j++){
-            if (i%2 == 0){
-                // Do not take the object
-                long notTaken = dp[1][j];
-                long taken;
-                // Item can be considered
-                if (objWeight[i-1] <= j){
-                    taken = dp[1][j-objWeight[i-1]] + objVal[i-1];
-                }
-                else {
-                    // Cannot take item
-                    dp[0][j] = dp[1][j];
-                    continue;
-                }
-                // Take the most optimal choice
-                dp[0][j] = max(taken, notTaken);
-            }
-            else {
-                // Do not take the object
-                long notTaken = dp[0][j];
-                long taken;
-                // Item can be considered
-                if (objWeight[i-1] <= j){
-                    taken = dp[0][j-objWeight[i-1]] + objVal[i-1];
-                }
-                else {
-                    // Cannot take item
-                    dp[1][j] = dp[0][j];
-                    continue;
-                }
-                // Take the most optimal choice
-                dp[1][j] = max(taken, notTaken);
-            }
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cin >> N >> W;
+    for (int i = 0; i < N; i++) {
+        ll w, v;
+        cin >> w >> v;
+        for (int j = 0; j <= W; j++) {
+            dp[cur][j] = max(dp[pre][j], dp[cur][j]);
+            if (w <= j) dp[cur][j] = max(dp[cur][j], dp[pre][j-w]+v);
         }
+        swap(pre, cur);
     }
-    if (n%2 == 0){
-        cout << dp[0][w];
-    }
-    else {
-        cout << dp[1][w];
-    }
+    cout << dp[pre][W] << '\n';
 }
