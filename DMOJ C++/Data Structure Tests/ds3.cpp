@@ -1,167 +1,94 @@
-#include <iostream>
-#include <algorithm>
-#include <cstdio>
-#include <climits>
-
+#include <bits/stdc++.h>
 using namespace std;
+typedef pair<int, int> pii;
+typedef vector<pair<int, int>> vii;
+typedef vector<int> vi;
+typedef long double ld;
+typedef long long ll;
+typedef unsigned long long ull;
+#define eb emplace_back
+#define pb push_back
+#define mp make_pair
+#define srt(x) sort(x.begin(), x.end())
+#define all(x) x.begin(), x.end()
+#define inf 0x3f3f3f3f
 
-pair<int, int> combineGCD(pair<int, int> a, pair<int, int> b){
-    // First int is GCD, second int is number of times it appears
-    int gcd = __gcd(a.first, b.first);
-    // Left and right tree are equal to GCD, every node in left and right tree are equal
-    if (a.first == b.first && b.first == gcd && a.first == gcd){
-        return make_pair(gcd, a.second+b.second);
+const int MM = 1e5+5;
+int a[MM], minSeg[MM*2];
+pii seg[MM*2];
+
+pii combine(pii a, pii b) {
+    int gcd = __gcd(a.second, b.second);
+    int cnt = 0;
+    cnt += (a.second == gcd ? a.first : 0);
+    cnt += (b.second == gcd ? b.first : 0);
+    return {cnt, gcd};
+}
+
+void build() {
+    for (int i = MM-1; i > 0; i--) {
+        minSeg[i] = min(minSeg[i<<1], minSeg[i<<1|1]);
+        seg[i] = combine(seg[i<<1], seg[i<<1|1]);
     }
-    // Left tree is equal to gcd, every node in left tree is equal to gcd
-    // And every right node is not
-    else if (a.first == gcd){
-        return make_pair(gcd, a.second);
-    }
-    // Right tree is equal to gcd, every node in right tree is equal to gcd
-    // And every left node is not
-    else if (b.first == gcd){
-        return make_pair(gcd, b.second);
-    }
-    else{
-        return make_pair(gcd, 0);
+}
+void upd(int p, int val) {
+    for (p += MM, minSeg[p] = val, seg[p] = {1, val}; p > 1; p >>= 1) {
+        minSeg[p>>1] = min(minSeg[p], minSeg[p^1]);
+        seg[p>>1] = combine(seg[p], seg[p^1]);
     }
 }
 
-void buildGCD(int node, int tl, int tr, pair<int, int> tree[], int arr[]){
-    if (tl == tr){
-        tree[node] = make_pair(arr[tl], 1);
+int qryMin(int l, int r) {
+    int ret = inf;
+    for (l += MM, r += MM; l < r; l >>= 1, r >>= 1) {
+        if (l&1) ret = min(ret, minSeg[l++]);
+        if (r&1) ret = min(ret, minSeg[--r]);
     }
-    else {
-        int mid = (tl + tr)/2;
-        // Recurse for left child
-        buildGCD(2*node, tl, mid, tree, arr);
-        // Recurse for right child
-        buildGCD(2*node+1, mid+1, tr, tree, arr);
-        // Current node is the sum of its children
-        tree[node] = combineGCD(tree[2*node], tree[2*node+1]);
-    }
+    return ret;
 }
 
-pair<int, int> returnGCD(int node, int tl, int tr, int l, int r, pair<int, int> tree[]){
-    // Unnecessary recursive call
-    if (l > r){
-        return make_pair(0, 0);
+pii qryGCD(int l, int r) {
+    pii ret = {0, 0};
+    for (l += MM, r += MM; l < r; l >>= 1, r >>= 1) {
+        if (l&1) ret = combine(ret, seg[l++]);
+        if (r&1) ret = combine(ret, seg[--r]);
     }
-    // Query is equal to a pre computed value in the tree
-    if (tl == l && tr == r){
-        return tree[node];
-    }
-    // Query falls partially within both left and right child
-    int mid = (tl + tr)/2;
-    pair<int, int> GCDLeft = returnGCD(node*2, tl, mid, l, min(r, mid), tree);
-    pair<int, int> GCDRight = returnGCD(node*2+1, mid+1, tr, max(l, mid+1), r, tree);
-    return combineGCD(GCDLeft, GCDRight);
+    return ret;
 }
 
-void updateGCD(int node, int tl, int tr, int pos, int x, pair<int, int> tree[]){
-    // Leaf node
-    if (tl == tr){
-        tree[node] = make_pair(x,1);
-    }
-    else {
-        int mid = (tl + tr)/2;
-        // Recurse for left and right child
-        if (pos <= mid){
-            updateGCD(node*2, tl, mid, pos, x, tree);
-        }
-        else {
-            updateGCD(node*2+1, mid+1, tr, pos, x, tree);
-        }
-        // Update parent
-        tree[node] = combineGCD(tree[node*2], tree[node*2+1]);
-    }
-}
-
-void buildMin(int node, int tl, int tr, int tree[], int arr[]){
-    // Leaf node
-    if (tl == tr){
-        tree[node] = arr[tl];
-    }
-    else {
-        int mid = (tl + tr)/2;
-        // Recurse for left child
-        buildMin(2*node, tl, mid, tree, arr);
-        // Recurse for right child
-        buildMin(2*node+1, mid+1, tr, tree, arr);
-        // Current node is the sum of its children
-        tree[node] = min(tree[2*node], tree[2*node+1]);
-    }
-}
-
-int returnMin(int node, int tl, int tr, int l, int r, int tree[]){
-    // Unnecessary recursive call
-    if (l > r){
-        return INT_MAX;
-    }
-    // Query is equal to a pre computed value in the tree
-    if (tl == l && tr == r){
-        return tree[node];
-    }
-    // Query falls partially within both left and right child
-    int mid = (tl + tr)/2;
-    int minLeft = returnMin(node*2, tl, mid, l, min(r, mid), tree);
-    int minRight = returnMin(node*2+1, mid+1, tr, max(l, mid+1), r, tree);
-    return min(minLeft, minRight);
-}
-
-void updateMin(int node, int tl, int tr, int pos, int x, int tree[]){
-    // Leaf node
-    if (tl == tr){
-        tree[node] = x;
-    }
-    else {
-        int mid = (tl + tr)/2;
-        // Recurse for left and right child
-        if (pos <= mid){
-            updateMin(node*2, tl, mid, pos, x, tree);
-        }
-        else {
-            updateMin(node*2+1, mid+1, tr, pos, x, tree);
-        }
-        // Update parent
-        tree[node] = min(tree[node*2], tree[node*2+1]);
-    }
-}
 
 int main() {
-    int n, q;
-    char instruction;
-    cin >> n >> q;
-    int arr[n], minTree[4*n];
-    pair<int, int> GCDTree[4*n];
-    for (int i = 0; i < n; i++){
-        scanf("%i", &arr[i]);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int n, m;
+    cin >> n >> m;
+    for (int i = 0; i < n; i++) {
+        cin >> minSeg[i+MM];
+        seg[i+MM] = {1, minSeg[i+MM]};
     }
-    // Root node stored at index 1
-    buildGCD(1, 0, n-1, GCDTree, arr);
-    buildMin(1, 0, n-1, minTree, arr);
-    for (int i = 0; i < q; i++){
-        cin >> instruction;
-        if (instruction == 'C'){
+    build();
+    for (int i = 0; i < m; i++) {
+        char op;
+        cin >> op;
+        if (op == 'C') {
             int x, v;
-            scanf("%i%i", &x, &v);
-            updateGCD(1, 0, n-1, x-1, v, GCDTree);
-            updateMin(1, 0, n-1, x-1, v, minTree);
+            cin >> x >> v;
+            upd(x-1, v);
         }
-        else if (instruction == 'M'){
+        else if (op == 'M') {
             int l, r;
-            scanf("%i%i", &l, &r);
-            printf("%i\n", returnMin(1, 0, n-1, l-1, r-1, minTree));
+            cin >> l >> r;
+            cout << qryMin(l-1, r) << '\n';
         }
-        else if (instruction == 'G'){
+        else if (op == 'G'){
             int l, r;
-            scanf("%i%i", &l, &r);
-            printf("%i\n", returnGCD(1, 0, n-1, l-1, r-1, GCDTree).first);
+            cin >> l >> r;
+            cout << qryGCD(l-1, r).second << '\n';
         }
-        else if (instruction == 'Q'){
+        else {
             int l, r;
-            scanf("%i%i", &l, &r);
-            printf("%i\n", returnGCD(1, 0, n-1, l-1, r-1, GCDTree).second);
+            cin >> l >> r;
+            cout << qryGCD(l-1, r).first << '\n';
         }
     }
 }
