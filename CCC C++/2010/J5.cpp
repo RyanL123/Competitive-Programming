@@ -1,92 +1,40 @@
-#include <iostream>
-#include <cstdio>
-#include <vector>
-
+#include <bits/stdc++.h>
 using namespace std;
+typedef pair<int, int> pii;
+typedef vector<pair<int, int>> vii;
+typedef vector<int> vi;
+typedef long double ld;
+typedef long long ll;
+typedef unsigned long long ull;
+#define eb emplace_back
+#define pb push_back
+#define mp make_pair
+#define srt(x) sort(x.begin(), x.end())
+#define all(x) x.begin(), x.end()
+#define inf 0x3f3f3f3f
 
+int dis[10][10];
 int main() {
-    //input
-    int x,y,x2,y2;
-    scanf("%i %i",&x,&y);
-    scanf("%i %i",&x2,&y2);
-
-    //initializes visited array
-    int visited[9][9] {0};
-    for (int i = 0; i < 9; i++){
-        for (int j = 0; j < 9; j++){
-            visited[i][j] = 999;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int x1, y1, x2, y2;
+    cin >> x1 >> y1 >> x2 >> y2;
+    vii move = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1}};
+    queue<pii> q;
+    memset(dis, 0x3f, sizeof(dis));
+    dis[x1][y1] = 0;
+    q.push({x1, y1});
+    while (!q.empty()) {
+        int x = q.front().first, y = q.front().second;
+        q.pop();
+        for (pii p : move) {
+            if (x+p.first <= 8 && x+p.first >= 1 && y+p.second <= 8 && y+p.second >= 1) {
+                if (dis[x+p.first][y+p.second] > dis[x][y]+1) {
+                    dis[x+p.first][y+p.second] = dis[x][y]+1;
+                    q.push({x+p.first, y+p.second});
+                }
+            }
         }
     }
-    visited[x][y] = 0;
-
-    //bfs
-
-    vector<int> queue;
-
-    //adds initial node into the queue
-    queue.push_back(x);
-    queue.push_back(y);
-
-
-    //keep moving until target is found, increments steps 2D array along the way
-    while (true){
-        //found targeted square
-        if (queue[0] == x2 && queue[1] == y2){
-            printf("%i",visited[queue[0]][queue[1]]);
-            break;
-        }
-        //add all available children nodes of the parent node and mark them as visited
-        //top right
-        if (visited[queue[0]+1][queue[1]+2] > visited[queue[0]][queue[1]]&& queue[0]+1 <= 8 && queue[1]+2 <= 8 && queue[0]+1 > 0 && queue[1]+2 > 0){
-            visited[queue[0]+1][queue[1]+2] = visited[queue[0]][queue[1]]+1;
-            queue.push_back(queue[0]+1);
-            queue.push_back(queue[1]+2);
-        }
-        //right top
-        if (visited[queue[0]+2][queue[1]+1] > visited[queue[0]][queue[1]] && queue[0]+2 <= 8 && queue[1]+1 <= 8 && queue[0]+2 > 0 && queue[1]+1 > 0){
-            visited[queue[0]+2][queue[1]+1] = visited[queue[0]][queue[1]]+1;
-            queue.push_back(queue[0]+2);
-            queue.push_back(queue[1]+1);
-        }
-        //right bottom
-        if (visited[queue[0]+2][queue[1]-1] > visited[queue[0]][queue[1]] && queue[0]+2 <= 8 && queue[1]-1 <= 8 && queue[0]+2 > 0 && queue[1]-1 > 0){
-            visited[queue[0]+2][queue[1]-1] = visited[queue[0]][queue[1]]+1;
-            queue.push_back(queue[0]+2);
-            queue.push_back(queue[1]-1);
-        }
-        //bottom right
-        if (visited[queue[0]+1][queue[1]-2] > visited[queue[0]][queue[1]] && queue[0]+1 <= 8 && queue[1]-2 <= 8 && queue[0]+1 > 0 && queue[1]-2 > 0){
-            visited[queue[0]+1][queue[1]-2] = visited[queue[0]][queue[1]]+1;
-            queue.push_back(queue[0]+1);
-            queue.push_back(queue[1]-2);
-        }
-        //bottom left
-        if (visited[queue[0]-1][queue[1]-2] > visited[queue[0]][queue[1]] && queue[0]-1 <= 8 && queue[1]-2 <= 8 && queue[0]-1 > 0 && queue[1]-2 > 0){
-            visited[queue[0]-1][queue[1]-2] = visited[queue[0]][queue[1]]+1;
-            queue.push_back(queue[0]-1);
-            queue.push_back(queue[1]-2);
-        }
-        //left bottom
-        if (visited[queue[0]-2][queue[1]-1] > visited[queue[0]][queue[1]] && queue[0]-2 < 8 && queue[1]-1 < 8 && queue[0]-2 > 0 && queue[1]-1 > 0){
-            visited[queue[0]-2][queue[1]-1] = visited[queue[0]][queue[1]]+1;
-            queue.push_back(queue[0]-2);
-            queue.push_back(queue[1]-1);
-        }
-        //left top
-        if (visited[queue[0]-2][queue[1]+1] > visited[queue[0]][queue[1]] && queue[0]-2 < 8 && queue[1]+1 < 8 && queue[0]-2 > 0 && queue[1]+1 > 0){
-            visited[queue[0]-2][queue[1]+1] = visited[queue[0]][queue[1]]+1;
-            queue.push_back(queue[0]-2);
-            queue.push_back(queue[1]+1);
-        }
-        //top left
-        if (visited[queue[0]-1][queue[1]+2] > visited[queue[0]][queue[1]] && queue[0]-1 < 8 && queue[1]+2 < 8 && queue[0]-1 > 0 && queue[1]+2 > 0){
-            visited[queue[0]-1][queue[1]+2] = visited[queue[0]][queue[1]]+1;
-            queue.push_back(queue[0]-1);
-            queue.push_back(queue[1]+2);
-        }
-
-        //erase the current node
-        queue.erase(queue.begin());
-        queue.erase(queue.begin());
-    }
+    cout << dis[x2][y2] << '\n';
 }
