@@ -1,66 +1,54 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 typedef pair<int, int> pii;
 typedef vector<pair<int, int>> vii;
 typedef vector<int> vi;
+typedef long double ld;
 typedef long long ll;
 typedef unsigned long long ull;
-#define pb(x) push_back(x)
-#define mp(a, b) make_pair(a, b)
-#define inf INT_MAX
+#define eb emplace_back
+#define pb push_back
+#define mp make_pair
+#define srt(x) sort(x.begin(), x.end())
+#define all(x) x.begin(), x.end()
+#define inf 0x3f3f3f3f
 
-vii graph[5010];
-vii pencil;
-int sp[5010];
-bool visited[5010];
+const int MM = 5e3+5;
+int N, K, T, D, dis[MM], vis[MM];
+vii adj[MM], P;
 int main() {
-    cin.sync_with_stdio(0);
-    cin.tie(0);
-    int n, t, d, k;
-    cin >> n >> t;
-    for (int i = 0; i < t; i++){
-        int x, y, c;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cin >> N >> T;
+    for (int i = 0, x, y, c; i < T; i++) {
         cin >> x >> y >> c;
-        graph[x].pb(mp(c, y));
-        graph[y].pb(mp(c, x));
+        adj[x].eb(y, c);
+        adj[y].eb(x, c);
     }
-    cin >> k;
-    for (int i = 0; i < k; i++){
-        int p, z;
+    cin >> K;
+    for (int i = 0, z, p; i < K; i++) {
         cin >> z >> p;
-        pencil.pb(mp(p, z));
+        P.eb(z, p);
     }
-    for (int i = 1; i <= n; i++){
-        sp[i] = inf;
-    }
-    cin >> d;
-    priority_queue<pair<int, int>> pq;
-    visited[d] = true;
-    pq.push(mp(0, d));
-    sp[d] = 0;
-    while (!pq.empty()){
-        int node = pq.top().second;
-        int cost = -pq.top().first;
-        visited[node] = true;
+    cin >> D;
+    priority_queue<pii> pq;
+    pq.push({0, D});
+    memset(dis, 0x3f, sizeof(dis));
+    dis[D] = 0;
+    vis[D] = true;
+    while (!pq.empty()) {
+        int c = -pq.top().first, v = pq.top().second;
+        vis[v] = true; 
         pq.pop();
-        if (cost > sp[node]) continue;
-        for (int i = 0; i < graph[node].size(); i++){
-            int connected = graph[node][i].second;
-            int connectedCost = graph[node][i].first;
-            if (cost + connectedCost < sp[connected] && !visited[connected]){
-                pq.push(mp(-(cost+connectedCost), connected));
-                sp[connected] = cost+connectedCost;
+        if (dis[v] < c) continue;
+        for (pii p : adj[v]) {
+            if (!vis[p.first] && dis[p.first] > c + p.second) {
+                dis[p.first] = c + p.second;
+                pq.push({-(c + p.second), p.first});
             }
         }
     }
-    int lowest = inf;
-    for (int i = 0; i < pencil.size(); i++){
-        int node = pencil[i].second;
-        int cost = pencil[i].first;
-        if (sp[node] + cost < lowest){
-            lowest = sp[node] + cost;
-        }
-    }
-    cout << lowest << endl;
+    int ans = inf;
+    for (int i = 0; i < K; i++) ans = min(ans, dis[P[i].first]+P[i].second);
+    cout << ans << '\n';
 }
