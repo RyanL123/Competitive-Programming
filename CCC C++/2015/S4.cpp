@@ -14,7 +14,7 @@ typedef unsigned long long ull;
 #define inf 0x3f3f3f3f
 
 const int MM = 2e3+5;
-int K, N, M, A, B, sp[MM][205], vis[MM];
+int K, N, M, A, B, sp[MM][205];
 vector<pair<int, pii>> adj[MM];
 
 int main() {
@@ -28,7 +28,7 @@ int main() {
     }
     cin >> A >> B;
     memset(sp, 0x3f, sizeof(sp));
-    for (int i = 0; i <= 200; i++) sp[A][i] = 0;
+    sp[A][0] = 0;
     priority_queue<pair<int, pii>> pq;
     pq.push({0, {A, 0}});
     while (!pq.empty()) {
@@ -47,6 +47,6 @@ int main() {
         }
     }
     int ans = inf;
-    for (int i = 0; i <= 200; i++) ans = min(ans, sp[B][i]);
+    for (int i = 0; i < K; i++) ans = min(ans, sp[B][i]);
     cout << (ans==inf?-1:ans) << '\n';
 }
