@@ -22,8 +22,8 @@ int main() {
     cin >> n >> t;
     for (ll i = 0, L, R, a, b, c; i < n; i++){
         cin >> L >> R >> a >> b >> c;
-        ll B = -2*a*(L-1)+b;
-        ll C = a*(L-1)*(L-1) - b*(L-1) + c;
+        ll B = -2*a*L+b;
+        ll C = a*L*L - b*L + c;
         da[R+1]-=a, da[L]+=a;
         db[R+1]-=B, db[L]+=B;
         dc[R+1]-=C, dc[L]+=C;
@@ -32,6 +32,6 @@ int main() {
         da[i] += da[i-1];
         db[i] += db[i-1];
         dc[i] += dc[i-1];
-        cout << da[i]*(i-1)*(i-1)+db[i]*(i-1)+dc[i] << ' ';
+        cout << da[i]*i*i+db[i]*i+dc[i] << ' ';
     }
 }
