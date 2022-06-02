@@ -1,23 +1,19 @@
 class Solution {
 public:
-    void helper(vector<string> &ret, string mp[], int ind, string &digits, string cur) {
+    void helper(vector<string>& ret, string cur, string &digits, int ind) {
         if (ind == digits.size()) {
             ret.push_back(cur);
             return;
         }
-        int num = digits[ind] - '0';
-        string letters = mp[num - 2];
-        for (int i = 0; i < letters.size(); i++) {
-            cur.push_back(letters[i]);
-            helper(ret, mp, ind + 1, digits, cur);
-            cur = cur.substr(0, cur.size()-1);
+        string mp[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        for (int i = 0; i < mp[digits[ind]-'0'].size(); i++) {
+            helper(ret, cur+mp[digits[ind]-'0'][i], digits, ind+1);
         }
     }
     vector<string> letterCombinations(string digits) {
-        string mp[] = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        vector<string> ret;
         if (digits == "") return {};
-        helper(ret, mp, 0, digits, "");
+        vector<string> ret;
+        helper(ret, "", digits, 0);
         return ret;
     }
 };
