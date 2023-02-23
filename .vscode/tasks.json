@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "type": "shell",
+    "label": "clang++ build active file",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "clang++ build active file",
+            "osx": {
+                "command": "/usr/bin/clang++",
+                "args": [
+                    "-std=gnu++11",
+                    "${file}",
+                    "-o",
+                    "${workspaceFolder}/build/out"
+                ],
+                "options": {
+                    "cwd": "/usr/bin"
+                },
+                "problemMatcher": ["$gcc"]
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
