@@ -15,7 +15,7 @@
             "intelliSenseMode": "macos-gcc-x64"
         },
         {
-            "name": "Windows",
+            "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
